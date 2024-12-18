@@ -2,6 +2,7 @@ import { Switch, Route } from "wouter";
 import { useTranslation } from 'react-i18next';
 import { Home } from "@/pages/Home";
 import { Blog } from "@/pages/Blog";
+import { Dashboard } from "@/pages/Dashboard";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import {
   NavigationMenu,
@@ -77,6 +78,7 @@ function App() {
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/blog" component={Blog} />
+          <Route path="/dashboard" component={Dashboard} />
         </Switch>
         <ChatWidget />
       </main>
