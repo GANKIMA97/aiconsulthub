@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { db } from '@db';
-import { payments, users } from '@db/schema';
+import { payments, users, analytics } from '@db/schema';
 import { sql } from 'drizzle-orm';
 import type { Request, Response } from 'express';
 
