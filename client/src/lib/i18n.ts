@@ -77,6 +77,16 @@ const resources = {
         blog: "博客",
         services: "服务",
         login: "登录"
+      },
+      tour: {
+        welcome: "Welcome to AIConsult Hub!",
+        welcomeDesc: "Your gateway to premium AI solutions and digital services.",
+        services: "Our Services",
+        servicesDesc: "Explore our range of AI tools, digital solutions, and business development services.",
+        language: "Language Options",
+        languageDesc: "Choose your preferred language for a personalized experience.",
+        login: "Get Started",
+        loginDesc: "Login or create an account to access exclusive features and content."
       }
     }
   }

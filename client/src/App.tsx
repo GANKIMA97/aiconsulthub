@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { TourGuide } from "@/components/TourGuide";
 
 function App() {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ function App() {
       <header className="fixed top-0 left-0 right-0 z-50 py-3 bg-background/90 backdrop-blur-lg border-b border-primary/10">
         <nav className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           <Link href="/">
-            <a className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <a id="logo" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <div className="bg-white rounded-lg p-1">
                 <img
                   src="/logo.png"
@@ -60,8 +61,10 @@ function App() {
           </NavigationMenu>
 
           <div className="flex items-center gap-4">
-            <LanguageSwitcher />
-            <Button variant="outline">
+            <div id="language-switcher">
+              <LanguageSwitcher />
+            </div>
+            <Button id="login-button" variant="outline">
               {t('nav.login')}
             </Button>
           </div>
@@ -69,6 +72,7 @@ function App() {
       </header>
 
       <main className="pt-16">
+        <TourGuide />
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/blog" component={Blog} />

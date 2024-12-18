@@ -64,7 +64,7 @@ export function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="relative py-16 px-4">
+      <section id="services" className="relative py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {services.map((service, index) => (
