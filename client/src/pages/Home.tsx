@@ -22,12 +22,17 @@ export function Home() {
     {
       icon: Laptop,
       title: t('services.digitalSolutions'),
-      description: 'Professional Video Editing, Digital Marketing, SEO Services',
+      description: 'Professional Video Editing, Digital Marketing, SEO Services, Email Marketing',
     },
     {
       icon: GraduationCap,
-      title: t('services.education'),
-      description: 'HSK Preparation, Chinese Language Training, Business Consulting',
+      title: t('services.businessCareer'),
+      description: 'Business Consulting, Data Analysis Services, Career Coaching, Professional Development',
+    },
+    {
+      icon: GraduationCap,
+      title: t('services.languageEducation'),
+      description: 'HSK Exam Preparation, Chinese Language Teaching',
     },
   ];
 

@@ -12,7 +12,8 @@ const resources = {
         aiTools: "AI & Premium Tools",
         globalAccess: "Global Digital Access",
         digitalSolutions: "Digital Solutions",
-        education: "Education & Development"
+        businessCareer: "Business & Career Development",
+        languageEducation: "Language & Education"
       },
       blog: {
         premiumContent: "Premium Content",
@@ -37,7 +38,8 @@ const resources = {
         aiTools: "Outils IA & Premium",
         globalAccess: "Accès Numérique Mondial",
         digitalSolutions: "Solutions Numériques",
-        education: "Éducation & Développement"
+        businessCareer: "Développement Professionnel & Carrière",
+        languageEducation: "Langues & Éducation"
       },
       blog: {
         premiumContent: "Contenu Premium",
@@ -62,7 +64,8 @@ const resources = {
         aiTools: "AI和高级工具",
         globalAccess: "全球数字访问",
         digitalSolutions: "数字解决方案",
-        education: "教育与发展"
+        businessCareer: "商业与职业发展",
+        languageEducation: "语言与教育"
       },
       blog: {
         premiumContent: "高级内容",
