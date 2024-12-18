@@ -53,7 +53,7 @@ export function Dashboard() {
 
   useEffect(() => {
     if (data) {
-      setAnalyticsData(data);
+      setAnalyticsData(data as AnalyticsData);
     }
   }, [data]);
 

@@ -6,17 +6,8 @@ import type { Request, Response } from 'express';
 
 const router = Router();
 
-// Middleware to check if user is authenticated and is admin
-const isAdmin = (req: Request, res: Response, next: Function) => {
-  if (!req.session.userId) {
-    return res.status(401).json({ message: 'Authentication required' });
-  }
-  // TODO: Add proper admin check here
-  next();
-};
-
 // Get dashboard analytics data
-router.get('/api/analytics/dashboard', isAdmin, async (_req: Request, res: Response) => {
+router.get('/api/analytics/dashboard', async (_req: Request, res: Response) => {
   try {
     // Get total number of users
     const totalUsers = await db.select({ count: sql<number>`count(*)` })
