@@ -42,13 +42,13 @@ export function Home() {
       <ParticleBackground />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4">
-        <div className="text-center space-y-6 max-w-4xl mx-auto">
+      <section className="relative min-h-[70vh] flex items-center justify-center px-4 pt-16">
+        <div className="text-center space-y-4 max-w-4xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-500"
+            className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-500"
           >
             {t('hero.title')}
           </motion.h1>
@@ -56,7 +56,7 @@ export function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-muted-foreground"
+            className="text-lg md:text-xl text-muted-foreground"
           >
             {t('hero.subtitle')}
           </motion.p>
@@ -64,9 +64,9 @@ export function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="relative py-20 px-4">
+      <section className="relative py-12 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             {services.map((service, index) => (
               <motion.div
                 key={index}

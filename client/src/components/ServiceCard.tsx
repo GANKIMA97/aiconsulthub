@@ -16,14 +16,14 @@ export function ServiceCard({ title, icon: Icon, description }: ServiceCardProps
     >
       <Card className="relative overflow-hidden bg-background/30 backdrop-blur-lg border-primary/20">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5" />
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Icon className="h-6 w-6 text-primary" />
+        <CardHeader className="pb-2">
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <Icon className="h-5 w-5 text-primary" />
             <span>{title}</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">{description}</p>
+          <p className="text-sm leading-tight text-muted-foreground">{description}</p>
         </CardContent>
       </Card>
     </motion.div>

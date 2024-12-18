@@ -18,16 +18,16 @@ function App() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 py-4">
+      <header className="fixed top-0 left-0 right-0 z-50 py-2 bg-background/80 backdrop-blur-lg border-b border-primary/10">
         <nav className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           <Link href="/">
-            <a className="flex items-center gap-2">
+            <a className="flex items-center gap-3">
               <img
                 src="/logo.png"
                 alt="AIConsult Hub"
-                className="h-10 w-10 object-contain invert"
+                className="h-8 w-8 object-contain brightness-200"
               />
-              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-500">
+              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-500">
                 AIConsult Hub
               </span>
             </a>
