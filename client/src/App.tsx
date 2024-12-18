@@ -26,7 +26,7 @@ function App() {
                 <img
                   src="/logo.png"
                   alt="AIConsult Hub"
-                  className="h-10 w-10 object-contain"
+                  className="h-16 w-16 object-contain"
                 />
               </div>
               <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-500">
