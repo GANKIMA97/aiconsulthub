@@ -67,3 +67,16 @@ export const insertSubscriptionSchema = createInsertSchema(subscriptions);
 export const selectSubscriptionSchema = createSelectSchema(subscriptions);
 export const insertBlogPostSchema = createInsertSchema(blogPosts);
 export const selectBlogPostSchema = createSelectSchema(blogPosts);
+
+export const analytics = pgTable("analytics", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  eventType: text("event_type").notNull(), // 'pageview', 'login', 'subscription_purchase', etc.
+  path: text("path"), // For pageviews
+  metadata: jsonb("metadata"), // Additional event data
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export type Analytics = typeof analytics.$inferSelect;
+export const insertAnalyticsSchema = createInsertSchema(analytics);
+export const selectAnalyticsSchema = createSelectSchema(analytics);
