@@ -16,7 +16,7 @@ const resources = {
         languageEducation: "Language & Education"
       },
       blog: {
-        premiumContent: "Exclusive Content",
+        exclusiveContent: "Exclusive Content",
         subscribe: "Subscribe to Access",
         locked: "This content is locked"
       },
@@ -42,7 +42,7 @@ const resources = {
         languageEducation: "Langues & Éducation"
       },
       blog: {
-        premiumContent: "Contenu Exclusif",
+        exclusiveContent: "Contenu Exclusif",
         subscribe: "S'abonner pour Accéder",
         locked: "Ce contenu est verrouillé"
       },
@@ -68,7 +68,7 @@ const resources = {
         languageEducation: "语言与教育"
       },
       blog: {
-        premiumContent: "专属内容",
+        exclusiveContent: "专属内容",
         subscribe: "订阅访问",
         locked: "此内容已锁定"
       },

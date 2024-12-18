@@ -29,7 +29,7 @@ export function Blog() {
       >
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-500">
-            {t('blog.premiumContent')}
+            {t('blog.exclusiveContent')}
           </h1>
           <p className="text-muted-foreground">
             {t('blog.subscribe')}
@@ -64,7 +64,7 @@ export function Blog() {
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <CardTitle className="text-xl">{post.title}</CardTitle>
-                      {post.isPremium && (
+                      {post.isExclusive && (
                         <Badge variant="default" className="bg-primary/80">
                           <Lock className="w-3 h-3 mr-1" />
                           Exclusive
@@ -75,13 +75,13 @@ export function Blog() {
 
                   <CardContent>
                     <p className="text-sm text-muted-foreground line-clamp-3">
-                      {post.isPremium ? t('blog.locked') : post.content}
+                      {post.isExclusive ? t('blog.locked') : post.content}
                     </p>
                   </CardContent>
 
                   <CardFooter className="flex justify-between">
                     <Button variant="outline" size="sm">
-                      {post.isPremium ? t('blog.subscribe') : 'Read More'}
+                      {post.isExclusive ? t('blog.subscribe') : 'Read More'}
                     </Button>
                     <Button variant="ghost" size="icon">
                       <Bookmark className="w-4 h-4" />

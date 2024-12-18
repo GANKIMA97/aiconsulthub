@@ -40,7 +40,7 @@ router.post('/api/auth/login', async (req: Request, res: Response) => {
       username: user.username,
       email: user.email,
       isAdmin: user.isAdmin,
-      isPremium: user.isPremium
+      isExclusive: user.isExclusive
     });
   } catch (error) {
     console.error('Login error:', error);
@@ -66,7 +66,7 @@ router.post('/api/auth/register', async (req: Request, res: Response) => {
       email,
       password: hashedPassword,
       isAdmin: false,
-      isPremium: false
+      isExclusive: false
     }).returning();
 
     return res.json({
@@ -74,7 +74,7 @@ router.post('/api/auth/register', async (req: Request, res: Response) => {
       username: user.username,
       email: user.email,
       isAdmin: user.isAdmin,
-      isPremium: user.isPremium
+      isExclusive: user.isExclusive
     });
   } catch (error) {
     console.error('Registration error:', error);
