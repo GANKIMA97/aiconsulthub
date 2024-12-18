@@ -1,0 +1,128 @@
+import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
+import { Brain, Globe, Laptop, GraduationCap } from 'lucide-react';
+import { ServiceCard } from '@/components/ServiceCard';
+import { ThreeScene } from '@/components/ThreeScene';
+import { ParticleBackground } from '@/components/ParticleBackground';
+
+export function Home() {
+  const { t } = useTranslation();
+
+  const services = [
+    {
+      icon: Brain,
+      title: t('services.aiTools'),
+      description: 'AI Tools Setup & Training, Premium AI Access, Custom AI Prompts Marketplace',
+    },
+    {
+      icon: Globe,
+      title: t('services.globalAccess'),
+      description: 'International Apple ID Setup, PayPal Account Services, Global Numbers Service',
+    },
+    {
+      icon: Laptop,
+      title: t('services.digitalSolutions'),
+      description: 'Professional Video Editing, Digital Marketing, SEO Services',
+    },
+    {
+      icon: GraduationCap,
+      title: t('services.education'),
+      description: 'HSK Preparation, Chinese Language Training, Business Consulting',
+    },
+  ];
+
+  return (
+    <div className="min-h-screen relative overflow-hidden">
+      <ThreeScene />
+      <ParticleBackground />
+
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center px-4">
+        <div className="text-center space-y-6 max-w-4xl mx-auto">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-500"
+          >
+            {t('hero.title')}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl text-muted-foreground"
+          >
+            {t('hero.subtitle')}
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="relative py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <ServiceCard
+                  title={service.title}
+                  icon={service.icon}
+                  description={service.description}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Image Section */}
+      <section className="relative py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="relative aspect-video rounded-lg overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+                alt="Technology"
+                className="object-cover w-full h-full"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="relative aspect-video rounded-lg overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1699492846274-029109bc833e"
+                alt="Cyberpunk City"
+                className="object-cover w-full h-full"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="relative aspect-video rounded-lg overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa"
+                alt="Neural Network"
+                className="object-cover w-full h-full"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
