@@ -12,7 +12,7 @@ export function Home() {
     {
       icon: Brain,
       title: t('services.aiTools'),
-      description: 'AI Tools Setup & Training, Premium AI Access, Custom AI Prompts Marketplace',
+      description: 'AI Tools Setup & Training, Exclusive AI Access, Custom AI Prompts Marketplace',
     },
     {
       icon: Globe,

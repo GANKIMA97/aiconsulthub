@@ -7,7 +7,7 @@ export const users = pgTable("users", {
   password: text("password").notNull(),
   email: text("email").unique().notNull(),
   isAdmin: boolean("is_admin").default(false),
-  isPremium: boolean("is_premium").default(false),
+  isExclusive: boolean("is_exclusive").default(false),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -38,7 +38,7 @@ export const blogPosts = pgTable("blog_posts", {
   title: text("title").notNull(),
   content: text("content").notNull(),
   authorId: integer("author_id").references(() => users.id),
-  isPremium: boolean("is_premium").default(false),
+  isExclusive: boolean("is_exclusive").default(false),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
   slug: text("slug").unique().notNull(),
