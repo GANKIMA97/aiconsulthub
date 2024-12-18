@@ -21,8 +21,15 @@ function App() {
       <header className="fixed top-0 left-0 right-0 z-50 py-4">
         <nav className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           <Link href="/">
-            <a className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-500">
-              AIConsult Hub
+            <a className="flex items-center gap-2">
+              <img
+                src="/logo.png"
+                alt="AIConsult Hub"
+                className="h-10 w-10 object-contain invert"
+              />
+              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-500">
+                AIConsult Hub
+              </span>
             </a>
           </Link>
 
