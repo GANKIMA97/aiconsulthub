@@ -33,7 +33,7 @@ export function Home() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <ThreeScene />
+      {window.WebGLRenderingContext && <ThreeScene />}
       <ParticleBackground />
 
       {/* Hero Section */}
