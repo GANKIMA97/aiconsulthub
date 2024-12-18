@@ -25,7 +25,7 @@ function App() {
               <img
                 src="/logo.png"
                 alt="AIConsult Hub"
-                className="h-8 w-8 object-contain brightness-200"
+                className="h-8 w-8 object-contain filter invert dark:invert-0"
               />
               <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-500">
                 AIConsult Hub

@@ -6,17 +6,17 @@ const resources = {
     translation: {
       hero: {
         title: "Welcome to AIConsult Hub",
-        subtitle: "Your Gateway to Premium AI Solutions"
+        subtitle: "Your Gateway to Exclusive AI Solutions"
       },
       services: {
-        aiTools: "AI & Premium Tools",
+        aiTools: "AI & Exclusive Tools",
         globalAccess: "Global Digital Access",
         digitalSolutions: "Digital Solutions",
         businessCareer: "Business & Career Development",
         languageEducation: "Language & Education"
       },
       blog: {
-        premiumContent: "Premium Content",
+        premiumContent: "Exclusive Content",
         subscribe: "Subscribe to Access",
         locked: "This content is locked"
       },
@@ -32,17 +32,17 @@ const resources = {
     translation: {
       hero: {
         title: "Bienvenue à AIConsult Hub",
-        subtitle: "Votre Passerelle vers des Solutions IA Premium"
+        subtitle: "Votre Passerelle vers des Solutions IA Exclusives"
       },
       services: {
-        aiTools: "Outils IA & Premium",
+        aiTools: "Outils IA & Exclusifs",
         globalAccess: "Accès Numérique Mondial",
         digitalSolutions: "Solutions Numériques",
         businessCareer: "Développement Professionnel & Carrière",
         languageEducation: "Langues & Éducation"
       },
       blog: {
-        premiumContent: "Contenu Premium",
+        premiumContent: "Contenu Exclusif",
         subscribe: "S'abonner pour Accéder",
         locked: "Ce contenu est verrouillé"
       },
@@ -58,17 +58,17 @@ const resources = {
     translation: {
       hero: {
         title: "欢迎来到AIConsult Hub",
-        subtitle: "您的高级AI解决方案门户"
+        subtitle: "您的专属AI解决方案门户"
       },
       services: {
-        aiTools: "AI和高级工具",
+        aiTools: "AI和专属工具",
         globalAccess: "全球数字访问",
         digitalSolutions: "数字解决方案",
         businessCareer: "商业与职业发展",
         languageEducation: "语言与教育"
       },
       blog: {
-        premiumContent: "高级内容",
+        premiumContent: "专属内容",
         subscribe: "订阅访问",
         locked: "此内容已锁定"
       },

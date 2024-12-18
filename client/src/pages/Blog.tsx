@@ -67,7 +67,7 @@ export function Blog() {
                       {post.isPremium && (
                         <Badge variant="default" className="bg-primary/80">
                           <Lock className="w-3 h-3 mr-1" />
-                          Premium
+                          Exclusive
                         </Badge>
                       )}
                     </div>
