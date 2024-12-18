@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { TourGuide } from "@/components/TourGuide";
+import { ChatWidget } from "@/components/ChatWidget";
 
 function App() {
   const { t } = useTranslation();
@@ -77,6 +78,7 @@ function App() {
           <Route path="/" component={Home} />
           <Route path="/blog" component={Blog} />
         </Switch>
+        <ChatWidget />
       </main>
     </>
   );
