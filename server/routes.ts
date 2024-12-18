@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import session from "express-session";
 import MemoryStore from "memorystore";
 import { WebSocketServer } from "ws";
+import type { WebSocket } from "ws";
 import authRoutes from "./routes/auth";
 import paymentRoutes from "./routes/payments";
 
@@ -37,13 +38,25 @@ export function registerRoutes(app: Express): Server {
   // Create WebSocket server
   const wss = new WebSocketServer({ 
     server: httpServer,
-    path: '/ws/chat'
+    path: '/ws/chat',
+    verifyClient: (info, cb) => {
+      // Skip verification for vite hmr
+      if (info.req.headers['sec-websocket-protocol'] === 'vite-hmr') {
+        return cb(false);
+      }
+      cb(true);
+    }
   });
 
   // Store active connections
-  const clients = new Set<WebSocket.WebSocket>();
+  const clients = new Set<WebSocket>();
 
-  wss.on('connection', (ws: WebSocket.WebSocket) => {
+  wss.on('connection', (ws) => {
+    // Skip handling vite-hmr connections
+    if ((ws as any)._protocol === 'vite-hmr') {
+      return;
+    }
+
     clients.add(ws);
 
     // Send welcome message
@@ -54,21 +67,27 @@ export function registerRoutes(app: Express): Server {
     };
     ws.send(JSON.stringify(welcomeMessage));
 
-    ws.on('message', (data: WebSocket.RawData) => {
+    ws.on('message', (data) => {
       try {
         const message: ChatMessage = JSON.parse(data.toString());
+        
         // Broadcast message to all connected clients
-        clients.forEach((client) => {
-          if (client.readyState === WebSocket.WebSocket.OPEN) {
+        for (const client of clients) {
+          if (client.readyState === ws.OPEN) {
             client.send(JSON.stringify(message));
           }
-        });
+        }
       } catch (error) {
         console.error('Error processing message:', error);
       }
     });
 
     ws.on('close', () => {
+      clients.delete(ws);
+    });
+
+    ws.on('error', (error) => {
+      console.error('WebSocket error:', error);
       clients.delete(ws);
     });
   });
