@@ -32,11 +32,11 @@ export function ServiceCard({ title, icon: Icon, description }: ServiceCardProps
             >
               <Icon className="h-5 w-5 text-primary transition-colors duration-300" />
             </motion.div>
-            <span className="transition-colors duration-300 text-black font-bold">{title}</span>
+            <span className="transition-colors duration-300 text-black font-extrabold text-opacity-100">{title}</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm leading-tight text-black">{description}</p>
+          <p className="text-sm leading-tight text-black font-semibold text-opacity-100">{description}</p>
         </CardContent>
       </Card>
     </motion.div>
