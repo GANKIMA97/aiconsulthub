@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Brain, Globe, Laptop, Briefcase } from 'lucide-react';
+import { Brain, Globe, Laptop, Briefcase, BookOpen } from 'lucide-react';
 import { ServiceCard } from '@/components/ServiceCard';
 import { ThreeScene } from '@/components/ThreeScene';
 import { ParticleBackground } from '@/components/ParticleBackground';
@@ -30,7 +30,7 @@ export function Home() {
       description: 'Business Consulting, Data Analysis Services, Career Coaching, Professional Development',
     },
     {
-      icon: Globe,
+      icon: BookOpen,
       title: 'Language Academy',
       description: 'Personalized Language Instruction & HSK Preparation',
     },
