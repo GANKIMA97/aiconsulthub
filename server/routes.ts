@@ -34,7 +34,6 @@ export function registerRoutes(app: Express): Server {
   app.use(authRoutes);
   app.use(paymentRoutes);
   app.use(analyticsRoutes);
-  app.use(analyticsRoutes);
 
   const httpServer = createServer(app);
 
