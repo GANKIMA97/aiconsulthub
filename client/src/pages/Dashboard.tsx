@@ -87,9 +87,16 @@ export function Dashboard() {
       <div className="p-6">
         <Card className="bg-destructive/10">
           <CardContent className="p-6">
-            <p className="text-destructive">
-              {t('dashboard.error')}
-            </p>
+            <div className="space-y-2">
+              <p className="text-destructive font-medium">
+                {t('dashboard.error', 'Error loading dashboard data')}
+              </p>
+              {error instanceof Error && (
+                <p className="text-sm text-muted-foreground">
+                  {error.message}
+                </p>
+              )}
+            </div>
           </CardContent>
         </Card>
       </div>

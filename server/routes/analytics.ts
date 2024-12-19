@@ -78,7 +78,10 @@ router.get('/api/analytics/dashboard', async (_req: Request, res: Response) => {
     });
   } catch (error) {
     console.error('Analytics error:', error);
-    return res.status(500).json({ message: 'Error fetching analytics data' });
+    return res.status(500).json({ 
+      message: error instanceof Error ? error.message : 'Error fetching analytics data',
+      error: error instanceof Error ? error.stack : String(error)
+    });
   }
 });
 
