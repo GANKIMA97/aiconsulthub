@@ -1,12 +1,78 @@
 import { Link } from "wouter";
-import { FaWeixin, FaWhatsapp, FaXTwitter, FaLinkedin, FaInstagram } from "react-icons/fa6";
+import { FaWeixin, FaWhatsapp, FaXTwitter, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa6";
+import { Separator } from "@/components/ui/separator";
 
 export function Footer() {
   return (
     <footer className="bg-background border-t mt-20">
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* About Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Contact Section */}
+          <div className="space-y-6">
+            <h3 className="font-bold text-lg">Contact Us</h3>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="weixin://dl/chat?AIConsult_Hub"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#07C160]/10 text-[#07C160] hover:bg-[#07C160]/20 transition-colors"
+                title="Chat on WeChat"
+              >
+                <FaWeixin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://wa.me/8619980867510"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 transition-colors"
+                title="Chat on WhatsApp"
+              >
+                <FaWhatsapp className="w-5 h-5" />
+              </a>
+              <a
+                href="mailto:strongacademy@88.com"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                title="Send Email"
+              >
+                <FaEnvelope className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Social Links */}
+          <div className="space-y-6">
+            <h3 className="font-bold text-lg">Follow Us</h3>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="https://x.com/GANKIMA_GOLI/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-black/10 text-black hover:bg-black/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 transition-colors"
+              >
+                <FaXTwitter className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/aiconsult-hub/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0A66C2]/10 text-[#0A66C2] hover:bg-[#0A66C2]/20 transition-colors"
+              >
+                <FaLinkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/gankima_goli_guerfie_hanoi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#E4405F]/10 text-[#E4405F] hover:bg-[#E4405F]/20 transition-colors"
+              >
+                <FaInstagram className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <Separator className="my-8" />
+
+        {/* Quick Links and About */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div>
             <h3 className="font-bold text-lg mb-4">About AIConsult Hub</h3>
             <p className="text-muted-foreground text-sm">
@@ -14,7 +80,6 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="font-bold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -35,55 +100,11 @@ export function Footer() {
               </li>
             </ul>
           </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="font-bold text-lg mb-4">Contact Us</h3>
-            <ul className="space-y-2">
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <FaWeixin className="w-5 h-5" />
-                <span>WeChat ID: AIConsult_Hub</span>
-              </li>
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <FaWhatsapp className="w-5 h-5" />
-                <span>+8619980867510</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social Links */}
-          <div>
-            <h3 className="font-bold text-lg mb-4">Follow Us</h3>
-            <div className="flex gap-4">
-              <a
-                href="https://x.com/GANKIMA_GOLI/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <FaXTwitter className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/aiconsult-hub/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <FaLinkedin className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.instagram.com/gankima_goli_guerfie_hanoi/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <FaInstagram className="w-6 h-6" />
-              </a>
-            </div>
-          </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
+        <Separator className="my-8" />
+
+        <div className="text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} AIConsult Hub. All rights reserved.</p>
         </div>
       </div>
