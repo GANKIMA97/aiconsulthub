@@ -3,16 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
   {
-    url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-    alt: "Technology"
+    url: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+    alt: "AI Technology Solutions"
   },
   {
-    url: "https://images.unsplash.com/photo-1699492846274-029109bc833e",
-    alt: "Cyberpunk City"
+    url: "https://images.unsplash.com/photo-1552664730-d307ca884978",
+    alt: "Business Consulting"
   },
   {
-    url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
-    alt: "Neural Network"
+    url: "https://images.unsplash.com/photo-1523240795612-9a054b0db644",
+    alt: "Language Learning"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
+    alt: "Digital Solutions"
   }
 ];
 
