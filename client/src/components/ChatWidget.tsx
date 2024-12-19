@@ -44,12 +44,13 @@ export function ChatWidget() {
 
         socket.onopen = () => {
           console.log('WebSocket connected');
+          const wasDisconnected = reconnectAttempts > 2;
           reconnectAttempts = 0; // Reset attempts on successful connection
-          // Only show toast if we were previously disconnected
-          if (reconnectAttempts > 0) {
+          // Only show toast if we were previously disconnected for a while
+          if (wasDisconnected) {
             toast({
-              title: "Reconnected",
-              description: "Chat service restored.",
+              title: "Connected",
+              description: "Chat service restored",
               duration: 1500,
             });
           }
@@ -79,16 +80,19 @@ export function ChatWidget() {
           
           // Only attempt to reconnect if we haven't reached max attempts
           if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
-            // Only show disconnection toast after a short delay
-            setTimeout(() => {
-              if (socket?.readyState !== 1) { // Only show if still not connected
-                toast({
-                  title: "Connecting...",
-                  description: "Attempting to restore chat service",
-                  duration: 2000,
-                });
-              }
-            }, 2000);
+            // Only show disconnection toast after a longer delay
+            // and only if we've already tried reconnecting multiple times
+            if (reconnectAttempts > 2) {
+              setTimeout(() => {
+                if (socket?.readyState !== WebSocket.OPEN) {
+                  toast({
+                    title: "Connection Issue",
+                    description: "Chat service is experiencing difficulties",
+                    duration: 2000,
+                  });
+                }
+              }, 5000); // Increased delay to 5 seconds
+            }
             
             reconnectTimeout = setTimeout(() => {
               reconnectAttempts++;
