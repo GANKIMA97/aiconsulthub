@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { TourGuide } from "@/components/TourGuide";
+
 import { ChatWidget } from "@/components/ChatWidget";
 
 function App() {
@@ -74,7 +74,6 @@ function App() {
       </header>
 
       <main className="pt-16">
-        <TourGuide />
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/blog" component={Blog} />
