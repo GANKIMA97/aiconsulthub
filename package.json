@@ -45,6 +45,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/i18next": "^13.0.0",
     "@types/react-i18next": "^8.1.0",
+    "@types/react-icons": "^3.0.0",
     "@types/three": "^0.171.0",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
