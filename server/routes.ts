@@ -7,6 +7,7 @@ import { WebSocket } from "ws";
 import authRoutes from "./routes/auth";
 import paymentRoutes from "./routes/payments";
 import analyticsRoutes from "./routes/analytics";
+import blogRoutes from "./routes/blog";
 
 interface ChatMessage {
   type: 'message' | 'system';
@@ -34,6 +35,7 @@ export function registerRoutes(app: Express): Server {
   app.use(authRoutes);
   app.use(paymentRoutes);
   app.use(analyticsRoutes);
+  app.use(blogRoutes);
 
   const httpServer = createServer(app);
 

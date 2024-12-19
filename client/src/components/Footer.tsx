@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { FaWeixin, FaWhatsapp, FaXTwitter, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa6";
 import { Separator } from "@/components/ui/separator";
+import { motion } from "framer-motion";
 
 export function Footer() {
   return (
@@ -11,29 +12,38 @@ export function Footer() {
           <div className="space-y-6">
             <h3 className="font-bold text-lg">Contact Us</h3>
             <div className="flex flex-wrap gap-4">
-              <a
+              <motion.a
                 href="weixin://dl/chat?AIConsult_Hub"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#07C160]/10 text-[#07C160] hover:bg-[#07C160]/20 transition-colors"
                 title="Chat on WeChat"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <FaWeixin className="w-5 h-5" />
-              </a>
-              <a
+                <span className="text-sm font-medium">WeChat</span>
+              </motion.a>
+              <motion.a
                 href="https://wa.me/8619980867510"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 transition-colors"
                 title="Chat on WhatsApp"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <FaWhatsapp className="w-5 h-5" />
-              </a>
-              <a
+                <span className="text-sm font-medium">WhatsApp</span>
+              </motion.a>
+              <motion.a
                 href="mailto:strongacademy@88.com"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
                 title="Send Email"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <FaEnvelope className="w-5 h-5" />
-              </a>
+                <span className="text-sm font-medium">Email</span>
+              </motion.a>
             </div>
           </div>
 
@@ -41,30 +51,39 @@ export function Footer() {
           <div className="space-y-6">
             <h3 className="font-bold text-lg">Follow Us</h3>
             <div className="flex flex-wrap gap-4">
-              <a
+              <motion.a
                 href="https://x.com/GANKIMA_GOLI/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-black/10 text-black hover:bg-black/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <FaXTwitter className="w-5 h-5" />
-              </a>
-              <a
+                <span className="text-sm font-medium">Twitter</span>
+              </motion.a>
+              <motion.a
                 href="https://www.linkedin.com/company/aiconsult-hub/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0A66C2]/10 text-[#0A66C2] hover:bg-[#0A66C2]/20 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <FaLinkedin className="w-5 h-5" />
-              </a>
-              <a
+                <span className="text-sm font-medium">LinkedIn</span>
+              </motion.a>
+              <motion.a
                 href="https://www.instagram.com/gankima_goli_guerfie_hanoi/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#E4405F]/10 text-[#E4405F] hover:bg-[#E4405F]/20 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <FaInstagram className="w-5 h-5" />
-              </a>
+                <span className="text-sm font-medium">Instagram</span>
+              </motion.a>
             </div>
           </div>
         </div>
@@ -75,8 +94,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div>
             <h3 className="font-bold text-lg mb-4">About AIConsult Hub</h3>
-            <p className="text-muted-foreground text-sm">
-              A cutting-edge professional networking platform transforming cross-domain connections through innovative communication technologies.
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              A cutting-edge professional networking platform transforming cross-domain connections through innovative digital experiences and comprehensive communication technologies.
             </p>
           </div>
 
@@ -94,7 +113,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/services">
+                <Link href="/#services">
                   <a className="text-muted-foreground hover:text-primary transition-colors">Services</a>
                 </Link>
               </li>
