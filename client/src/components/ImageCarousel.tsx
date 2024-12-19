@@ -4,19 +4,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 const images = [
   {
     url: "https://images.unsplash.com/photo-1687424909155-2ab96ed71f1d",
-    alt: "ChatGPT Interface"
+    alt: "AI Solutions & Integration"
   },
   {
-    url: "https://images.unsplash.com/photo-1664575198308-3959904fa430",
-    alt: "AI Technology Training"
+    url: "https://images.unsplash.com/photo-1560179707-f14e90ef3623",
+    alt: "Business Innovation Hub"
   },
   {
-    url: "https://images.unsplash.com/photo-1665686374006-b8f04cf62d57",
-    alt: "Business Development Solutions"
+    url: "https://images.unsplash.com/photo-1501504905252-473c47e087f8",
+    alt: "Modern Education Technology"
   },
   {
-    url: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d",
-    alt: "Language Academy Services"
+    url: "https://images.unsplash.com/photo-1488229297570-58520851e868",
+    alt: "Technology Innovation"
   }
 ];
 
