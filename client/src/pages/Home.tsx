@@ -31,8 +31,8 @@ export function Home() {
     },
     {
       icon: Globe,
-      title: t('services.language'),
-      description: 'HSK Training, Translation Service, Personal Chinese and English Teaching',
+      title: 'Language Academy',
+      description: 'Personalized Language Instruction & HSK Preparation',
     },
   ];
 
