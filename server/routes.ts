@@ -38,62 +38,100 @@ export function registerRoutes(app: Express): Server {
 
   const httpServer = createServer(app);
 
-  // Create WebSocket server
+  // Create WebSocket server with more robust configuration
   const wss = new WebSocketServer({ 
     server: httpServer,
     path: '/ws/chat',
     verifyClient: (info, cb) => {
-      // Skip verification for vite hmr
-      if (info.req.headers['sec-websocket-protocol'] === 'vite-hmr') {
-        return cb(false);
+      const protocol = info.req.headers['sec-websocket-protocol'];
+      // Explicitly reject vite-hmr connections
+      if (protocol === 'vite-hmr') {
+        cb(false);
+        return;
       }
-      cb(true);
-    }
+      // Accept chat connections
+      if (!protocol || protocol === 'chat') {
+        cb(true);
+        return;
+      }
+      // Reject unknown protocols
+      cb(false);
+    },
+    clientTracking: true // Enable built-in client tracking
   });
 
-  // Store active connections
-  const clients = new Set<WebSocket>();
+  // Store active chat clients separately from vite-hmr connections
+  const chatClients = new Set<WebSocket>();
 
-  wss.on('connection', (ws) => {
-    // Skip handling vite-hmr connections
-    if ((ws as any)._protocol === 'vite-hmr') {
+  wss.on('connection', (ws, req) => {
+    const protocol = req.headers['sec-websocket-protocol'];
+    
+    // Immediately close vite-hmr connections
+    if (protocol === 'vite-hmr') {
+      ws.close();
       return;
     }
 
-    clients.add(ws);
+    // Only handle chat protocol connections
+    if (!protocol || protocol === 'chat') {
+      chatClients.add(ws);
 
-    // Send welcome message
-    const welcomeMessage: ChatMessage = {
-      type: 'system',
-      content: 'Welcome to AIConsult Hub! How can we help you today?',
-      timestamp: Date.now()
-    };
-    ws.send(JSON.stringify(welcomeMessage));
-
-    ws.on('message', (data) => {
+      // Send welcome message
+      const welcomeMessage: ChatMessage = {
+        type: 'system',
+        content: 'Welcome to AIConsult Hub! How can we help you today?',
+        timestamp: Date.now()
+      };
+      
       try {
-        const message: ChatMessage = JSON.parse(data.toString());
-        
-        // Broadcast message to all connected clients
-        for (const client of clients) {
-          if (client.readyState === ws.OPEN) {
-            client.send(JSON.stringify(message));
-          }
-        }
+        ws.send(JSON.stringify(welcomeMessage));
       } catch (error) {
-        console.error('Error processing message:', error);
+        console.error('Error sending welcome message:', error);
+      }
+
+      ws.on('message', (data) => {
+        try {
+          const message: ChatMessage = JSON.parse(data.toString());
+          
+          // Broadcast message to all connected chat clients
+          chatClients.forEach(client => {
+            if (client.readyState === WebSocket.OPEN) {
+              try {
+                client.send(JSON.stringify(message));
+              } catch (err) {
+                console.error('Error broadcasting message:', err);
+              }
+            }
+          });
+        } catch (error) {
+          console.error('Error processing message:', error);
+        }
+      });
+
+      ws.on('close', () => {
+        chatClients.delete(ws);
+      });
+
+      ws.on('error', (error) => {
+        console.error('WebSocket error:', error);
+        chatClients.delete(ws);
+        try {
+          ws.close();
+        } catch (err) {
+          console.error('Error closing errored connection:', err);
+        }
+      });
+    }
+  });
+
+  // Periodic cleanup of dead connections
+  setInterval(() => {
+    chatClients.forEach(client => {
+      if (client.readyState === WebSocket.CLOSED || client.readyState === WebSocket.CLOSING) {
+        chatClients.delete(client);
       }
     });
-
-    ws.on('close', () => {
-      clients.delete(ws);
-    });
-
-    ws.on('error', (error) => {
-      console.error('WebSocket error:', error);
-      clients.delete(ws);
-    });
-  });
+  }, 30000); // Clean up every 30 seconds
 
   return httpServer;
 }

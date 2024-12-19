@@ -32,7 +32,10 @@ export function ChatWidget() {
 
     const connect = () => {
       const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      socket = new WebSocket(`${wsProtocol}//${window.location.host}/ws/chat`);
+      socket = new WebSocket(
+        `${wsProtocol}//${window.location.host}/ws/chat`,
+        'chat' // Specify chat protocol
+      );
 
       socket.onopen = () => {
         console.log('WebSocket connected');
