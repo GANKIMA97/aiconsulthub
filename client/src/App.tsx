@@ -5,6 +5,7 @@ import { Blog } from "@/pages/Blog";
 import { Dashboard } from "@/pages/Dashboard";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Footer } from "@/components/Footer";
+import { BackToTop } from "@/components/BackToTop";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -85,6 +86,7 @@ function App() {
           </Switch>
         </div>
         <ChatWidget />
+        <BackToTop />
       </main>
       <Footer />
     </>
