@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import session from "express-session";
 import MemoryStore from "memorystore";
 import { WebSocketServer } from "ws";
-import type { WebSocket } from "ws";
+import { WebSocket } from "ws";
 import authRoutes from "./routes/auth";
 import paymentRoutes from "./routes/payments";
 import analyticsRoutes from "./routes/analytics";
@@ -95,7 +95,7 @@ export function registerRoutes(app: Express): Server {
           
           // Broadcast message to all connected chat clients
           chatClients.forEach(client => {
-            if (client.readyState === WebSocket.OPEN) {
+            if (client.readyState === 1) { // 1 = OPEN
               try {
                 client.send(JSON.stringify(message));
               } catch (err) {
@@ -127,7 +127,7 @@ export function registerRoutes(app: Express): Server {
   // Periodic cleanup of dead connections
   setInterval(() => {
     chatClients.forEach(client => {
-      if (client.readyState === WebSocket.CLOSED || client.readyState === WebSocket.CLOSING) {
+      if (client.readyState === 3 || client.readyState === 2) { // 3 = CLOSED, 2 = CLOSING
         chatClients.delete(client);
       }
     });
