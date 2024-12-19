@@ -24,38 +24,84 @@ export function ChatWidget() {
   const { toast } = useToast();
 
   useEffect(() => {
-    const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const socket = new WebSocket(`${wsProtocol}//${window.location.host}/ws/chat`);
+    let socket: WebSocket | null = null;
+    let reconnectTimeout: NodeJS.Timeout;
+    let reconnectAttempts = 0;
+    const MAX_RECONNECT_ATTEMPTS = 5;
+    const RECONNECT_DELAY = 2000; // 2 seconds
 
-    socket.onopen = () => {
-      console.log('WebSocket connected');
+    const connect = () => {
+      const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      socket = new WebSocket(`${wsProtocol}//${window.location.host}/ws/chat`);
+
+      socket.onopen = () => {
+        console.log('WebSocket connected');
+        reconnectAttempts = 0; // Reset attempts on successful connection
+        toast({
+          title: "Connected",
+          description: "Chat service connected successfully.",
+          duration: 2000,
+        });
+      };
+
+      socket.onmessage = (event) => {
+        try {
+          const message = JSON.parse(event.data);
+          setMessages((prev) => [...prev, message]);
+          
+          // Scroll to bottom on new message
+          if (scrollAreaRef.current) {
+            setTimeout(() => {
+              scrollAreaRef.current?.scrollTo({ 
+                top: scrollAreaRef.current.scrollHeight, 
+                behavior: 'smooth' 
+              });
+            }, 100);
+          }
+        } catch (error) {
+          console.error('Error parsing message:', error);
+        }
+      };
+
+      socket.onclose = (event) => {
+        console.log('WebSocket closed:', event.code, event.reason);
+        
+        // Only attempt to reconnect if we haven't reached max attempts
+        if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
+          toast({
+            title: "Connection Lost",
+            description: "Attempting to reconnect...",
+            duration: 3000,
+          });
+          
+          reconnectTimeout = setTimeout(() => {
+            reconnectAttempts++;
+            connect();
+          }, RECONNECT_DELAY * Math.min(reconnectAttempts + 1, 5));
+        } else {
+          toast({
+            title: "Connection Failed",
+            description: "Unable to establish connection. Please refresh the page to try again.",
+            variant: "destructive",
+          });
+        }
+      };
+
+      socket.onerror = (error) => {
+        console.error('WebSocket error:', error);
+        // Let onclose handle the reconnection
+      };
+
+      setWs(socket);
     };
 
-    socket.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      setMessages((prev) => [...prev, message]);
-      
-      // Scroll to bottom on new message
-      if (scrollAreaRef.current) {
-        setTimeout(() => {
-          scrollAreaRef.current?.scrollTo({ top: scrollAreaRef.current.scrollHeight, behavior: 'smooth' });
-        }, 100);
-      }
-    };
-
-    socket.onerror = (error) => {
-      console.error('WebSocket error:', error);
-      toast({
-        title: "Connection Error",
-        description: "Failed to connect to chat service. Please try again later.",
-        variant: "destructive",
-      });
-    };
-
-    setWs(socket);
+    connect();
 
     return () => {
-      socket.close();
+      if (socket) {
+        socket.close();
+      }
+      clearTimeout(reconnectTimeout);
     };
   }, [toast]);
 
