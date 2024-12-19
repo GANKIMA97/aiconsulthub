@@ -95,7 +95,10 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-4">About AIConsult Hub</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              A cutting-edge professional networking platform transforming cross-domain connections through innovative digital experiences and comprehensive communication technologies.
+              AIConsult Hub is a premier technology enablement platform that unlocks the power of artificial intelligence and digital solutions for individuals and businesses. We specialize in providing seamless access to cutting-edge AI platforms while offering expert guidance on leveraging these tools for enhanced productivity, learning, and business growth.
+            </p>
+            <p className="text-muted-foreground text-sm leading-relaxed mt-2">
+              Our expertise extends beyond AI access - we empower our clients with customized AI solutions tailored to specific business needs, comprehensive training in AI tool utilization, and professional services ranging from business consultation to language instruction.
             </p>
           </div>
 
