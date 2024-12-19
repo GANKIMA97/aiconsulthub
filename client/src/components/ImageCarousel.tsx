@@ -7,16 +7,16 @@ const images = [
     alt: "ChatGPT Interface"
   },
   {
-    url: "https://images.unsplash.com/photo-1686191128892-3261fee866c9",
-    alt: "Perplexity AI"
+    url: "https://images.unsplash.com/photo-1664575198308-3959904fa430",
+    alt: "AI Technology Training"
   },
   {
-    url: "https://images.unsplash.com/photo-1693720501225-41721c2e1b58",
-    alt: "Claude AI Interface"
+    url: "https://images.unsplash.com/photo-1665686374006-b8f04cf62d57",
+    alt: "Business Development Solutions"
   },
   {
-    url: "https://images.unsplash.com/photo-1686933259164-b4c5c28ee6c5",
-    alt: "Midjourney Generated Art"
+    url: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d",
+    alt: "Language Academy Services"
   }
 ];
 
