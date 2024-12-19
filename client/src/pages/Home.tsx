@@ -64,9 +64,9 @@ export function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="relative py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+      <section id="services" className="relative min-h-screen flex items-center justify-center py-20 px-4">
+        <div className="max-w-6xl w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 place-items-center">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -78,6 +78,7 @@ export function Home() {
                   type: "spring",
                   stiffness: 100
                 }}
+                className="w-full"
               >
                 <ServiceCard
                   title={service.title}
