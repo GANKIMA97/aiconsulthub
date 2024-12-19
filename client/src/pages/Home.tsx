@@ -29,7 +29,11 @@ export function Home() {
       title: t('services.businessCareer'),
       description: 'Business Consulting, Data Analysis Services, Career Coaching, Professional Development',
     },
-    
+    {
+      icon: Globe,
+      title: t('services.language'),
+      description: 'HSK Training, Translation Service, Personal Chinese and English Teaching',
+    },
   ];
 
   return (
