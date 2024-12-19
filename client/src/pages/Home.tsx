@@ -4,6 +4,7 @@ import { Brain, Globe, Laptop, Briefcase, BookOpen } from 'lucide-react';
 import { ServiceCard } from '@/components/ServiceCard';
 import { ThreeScene } from '@/components/ThreeScene';
 import { ParticleBackground } from '@/components/ParticleBackground';
+import { ImageCarousel } from '@/components/ImageCarousel';
 
 export function Home() {
   const { t } = useTranslation();
@@ -177,47 +178,10 @@ export function Home() {
         </div>
       </section>
 
-      {/* Featured Image Section */}
+      {/* Featured Image Carousel */}
       <section className="relative py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="relative aspect-video rounded-lg overflow-hidden"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
-                alt="Technology"
-                className="object-cover w-full h-full"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative aspect-video rounded-lg overflow-hidden"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1699492846274-029109bc833e"
-                alt="Cyberpunk City"
-                className="object-cover w-full h-full"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="relative aspect-video rounded-lg overflow-hidden"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa"
-                alt="Neural Network"
-                className="object-cover w-full h-full"
-              />
-            </motion.div>
-          </div>
+          <ImageCarousel />
         </div>
       </section>
     </div>
