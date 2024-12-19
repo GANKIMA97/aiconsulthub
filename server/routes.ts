@@ -40,24 +40,32 @@ export function registerRoutes(app: Express): Server {
 
   // Create WebSocket server with more robust configuration
   const wss = new WebSocketServer({ 
-    server: httpServer,
-    path: '/ws/chat',
-    verifyClient: (info, cb) => {
-      const protocol = info.req.headers['sec-websocket-protocol'];
+    noServer: true,
+    clientTracking: true
+  });
+
+  // Handle upgrade requests separately
+  httpServer.on('upgrade', (request, socket, head) => {
+    const pathname = new URL(request.url!, `http://${request.headers.host}`).pathname;
+    
+    if (pathname === '/ws/chat') {
+      const protocol = request.headers['sec-websocket-protocol'];
+      
       // Explicitly reject vite-hmr connections
       if (protocol === 'vite-hmr') {
-        cb(false);
+        socket.write('HTTP/1.1 400 Bad Request\r\n\r\n');
+        socket.destroy();
         return;
       }
-      // Accept chat connections
-      if (!protocol || protocol === 'chat') {
-        cb(true);
-        return;
-      }
-      // Reject unknown protocols
-      cb(false);
-    },
-    clientTracking: true // Enable built-in client tracking
+
+      wss.handleUpgrade(request, socket, head, (ws) => {
+        wss.emit('connection', ws, request);
+      });
+    } else {
+      // Reject non-chat WebSocket connections
+      socket.write('HTTP/1.1 404 Not Found\r\n\r\n');
+      socket.destroy();
+    }
   });
 
   // Store active chat clients separately from vite-hmr connections
