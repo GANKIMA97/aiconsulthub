@@ -12,6 +12,7 @@ interface Message {
   content: string;
   sender?: string;
   timestamp: number;
+  id?: string;
 }
 
 export function ChatWidget() {
@@ -59,17 +60,25 @@ export function ChatWidget() {
         socket.onmessage = (event) => {
           try {
             const message = JSON.parse(event.data);
-            setMessages((prev) => [...prev, message]);
-            
-            // Scroll to bottom on new message
-            if (scrollAreaRef.current) {
-              setTimeout(() => {
-                scrollAreaRef.current?.scrollTo({ 
-                  top: scrollAreaRef.current.scrollHeight, 
-                  behavior: 'smooth' 
-                });
-              }, 100);
-            }
+            setMessages((prev) => {
+              // Check if message already exists (prevent duplicates)
+              if (message.id && prev.some(m => m.id === message.id)) {
+                return prev;
+              }
+              const newMessages = [...prev, message];
+              
+              // Scroll to bottom on new message
+              if (scrollAreaRef.current) {
+                setTimeout(() => {
+                  scrollAreaRef.current?.scrollTo({ 
+                    top: scrollAreaRef.current.scrollHeight, 
+                    behavior: 'smooth' 
+                  });
+                }, 100);
+              }
+              
+              return newMessages;
+            });
           } catch (error) {
             console.error('Error parsing message:', error);
           }
@@ -143,8 +152,11 @@ export function ChatWidget() {
       content: inputValue,
       sender: 'user',
       timestamp: Date.now(),
+      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
     };
 
+    // Add message to local state immediately
+    setMessages(prev => [...prev, message]);
     ws.send(JSON.stringify(message));
     setInputValue('');
   };

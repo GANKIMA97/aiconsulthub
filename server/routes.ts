@@ -100,9 +100,9 @@ export function registerRoutes(app: Express): Server {
         try {
           const message: ChatMessage = JSON.parse(data.toString());
           
-          // Broadcast message to all connected chat clients
+          // Broadcast message to all other connected chat clients (not the sender)
           chatClients.forEach(client => {
-            if (client.readyState === 1) { // 1 = OPEN
+            if (client !== ws && client.readyState === WebSocket.OPEN) {
               try {
                 client.send(JSON.stringify(message));
               } catch (err) {
