@@ -107,7 +107,7 @@ export function Dashboard() {
     <div className="p-6 space-y-6">
       {/* Stats Overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card>
+        <Card className="bg-blue-50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               {t('dashboard.totalVisits')}
@@ -120,7 +120,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-gray-50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               {t('dashboard.revenue')}
@@ -135,7 +135,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-blue-50/70">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               {t('dashboard.activeUsers')}
@@ -148,7 +148,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-indigo-50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               {t('dashboard.conversionRate')}
@@ -166,7 +166,7 @@ export function Dashboard() {
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card>
+        <Card className="bg-blue-50/80">
           <CardHeader>
             <CardTitle>{t('dashboard.revenueOverTime')}</CardTitle>
             <CardDescription>
@@ -201,7 +201,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-blue-50/80">
           <CardHeader>
             <CardTitle>{t('dashboard.userDistribution')}</CardTitle>
             <CardDescription>
