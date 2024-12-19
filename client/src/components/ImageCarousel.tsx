@@ -3,20 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
   {
-    url: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
-    alt: "AI Technology Solutions"
+    url: "https://images.unsplash.com/photo-1687424909155-2ab96ed71f1d",
+    alt: "ChatGPT Interface"
   },
   {
-    url: "https://images.unsplash.com/photo-1552664730-d307ca884978",
-    alt: "Business Consulting"
+    url: "https://images.unsplash.com/photo-1686191128892-3261fee866c9",
+    alt: "Perplexity AI"
   },
   {
-    url: "https://images.unsplash.com/photo-1523240795612-9a054b0db644",
-    alt: "Language Learning"
+    url: "https://images.unsplash.com/photo-1693720501225-41721c2e1b58",
+    alt: "Claude AI Interface"
   },
   {
-    url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
-    alt: "Digital Solutions"
+    url: "https://images.unsplash.com/photo-1686933259164-b4c5c28ee6c5",
+    alt: "Midjourney Generated Art"
   }
 ];
 
