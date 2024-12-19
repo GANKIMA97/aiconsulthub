@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Brain, Globe, Laptop, GraduationCap } from 'lucide-react';
+import { Brain, Globe, Laptop, Briefcase } from 'lucide-react';
 import { ServiceCard } from '@/components/ServiceCard';
 import { ThreeScene } from '@/components/ThreeScene';
 import { ParticleBackground } from '@/components/ParticleBackground';
@@ -25,15 +25,11 @@ export function Home() {
       description: 'Professional Video Editing, Digital Marketing, SEO Services, Email Marketing',
     },
     {
-      icon: GraduationCap,
+      icon: Briefcase,
       title: t('services.businessCareer'),
       description: 'Business Consulting, Data Analysis Services, Career Coaching, Professional Development',
     },
-    {
-      icon: GraduationCap,
-      title: t('services.languageEducation'),
-      description: 'HSK Exam Preparation, Chinese Language Teaching',
-    },
+    
   ];
 
   return (
