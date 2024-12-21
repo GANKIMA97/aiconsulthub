@@ -18,11 +18,7 @@ interface Message {
 export function ChatWidget() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([{
-    type: 'system',
-    content: 'Welcome to AIConsult Hub! How can we help you today?',
-    timestamp: Date.now()
-  }]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [ws, setWs] = useState<WebSocket | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -51,6 +47,19 @@ export function ChatWidget() {
           console.log('WebSocket connected');
           const wasDisconnected = reconnectAttempts > 2;
           reconnectAttempts = 0; // Reset attempts on successful connection
+          
+          // Add welcome message only if messages array is empty
+          setMessages(prev => {
+            if (prev.length === 0) {
+              return [{
+                type: 'system',
+                content: 'Welcome to AIConsult Hub! How can we help you today?',
+                timestamp: Date.now()
+              }];
+            }
+            return prev;
+          });
+
           // Only show toast if we were previously disconnected for a while
           if (wasDisconnected) {
             toast({
