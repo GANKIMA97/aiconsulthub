@@ -47,15 +47,16 @@ export function TypewriterEffect() {
           exit={{ opacity: 0, y: -20 }}
           className="text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-cyan-500 to-blue-600">
-            {currentText}
-            <motion.span
-              animate={{ opacity: [1, 0] }}
-              transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-              className="inline-block"
-            >
-              |
-            </motion.span>
+          <h2 className="text-3xl md:text-4xl font-bold">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-cyan-500 to-blue-600">
+              {currentText}
+              <motion.span
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.3, repeat: Infinity, repeatType: "reverse" }}
+              >
+                |
+              </motion.span>
+            </span>
           </h2>
         </motion.div>
       </AnimatePresence>
