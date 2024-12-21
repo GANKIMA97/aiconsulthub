@@ -65,7 +65,7 @@ function App() {
           </NavigationMenu>
 
           <div className="flex items-center gap-4">
-            <div id="language-switcher">
+            <div id="language-switcher" className="relative z-50">
               <LanguageSwitcher />
             </div>
           </div>

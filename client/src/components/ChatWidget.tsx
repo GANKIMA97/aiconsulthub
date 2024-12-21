@@ -18,7 +18,11 @@ interface Message {
 export function ChatWidget() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([{
+    type: 'system',
+    content: 'Welcome to AIConsult Hub! How can we help you today?',
+    timestamp: Date.now()
+  }]);
   const [inputValue, setInputValue] = useState('');
   const [ws, setWs] = useState<WebSocket | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
