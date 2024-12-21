@@ -22,8 +22,13 @@ const testimonials = [
     id: 1,
     imageUrl: "97b1bee74063fb3e8db1f43b3629f28.jpg",
     alt: "Client testimonial about ChatGPT access in China",
-    content: "I'm pleased that the work is completed well. I have access to the Plus version of ChatGPT while in China.",
-    caption: "Positive Completion of Work"
+    content: "I'm pleased that the work is completed well. I have access to the Plus version of ChatGPT while in China."
+  },
+  {
+    id: 2,
+    imageUrl: "f59d129b53b4f4fe2b940bf525c6fdb.jpg",
+    alt: "Client testimonial about positive completion of work",
+    content: "Positive Completion of Work"
   }
 ];
 
