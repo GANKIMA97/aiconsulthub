@@ -52,7 +52,7 @@ export function TypewriterEffect() {
             <motion.span
               animate={{ opacity: [1, 0] }}
               transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-              className="inline-block ml-1"
+              className="inline-block"
             >
               |
             </motion.span>
