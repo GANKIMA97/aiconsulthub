@@ -24,16 +24,18 @@ export function ChatWidget() {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
-  // Add welcome message when chat is opened
+  // Add welcome message only when chat is first opened
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      setMessages([{
-        type: 'system',
+      const welcomeMessage = {
+        type: 'system' as const,
         content: 'Welcome to AIConsult Hub! How can we help you today?',
-        timestamp: Date.now()
-      }]);
+        timestamp: Date.now(),
+        id: 'welcome-message'
+      };
+      setMessages([welcomeMessage]);
     }
-  }, [isOpen]);
+  }, [isOpen, messages.length]);
 
   useEffect(() => {
     let socket: WebSocket | null = null;
@@ -72,8 +74,11 @@ export function ChatWidget() {
           try {
             const message = JSON.parse(event.data);
             setMessages((prev) => {
-              // Check if message already exists (prevent duplicates)
-              if (message.id && prev.some(m => m.id === message.id)) {
+              // Prevent duplicates and welcome message from being added again
+              if (
+                (message.id && prev.some(m => m.id === message.id)) ||
+                (message.type === 'system' && message.content.includes('Welcome to AIConsult Hub'))
+              ) {
                 return prev;
               }
               const newMessages = [...prev, message];
