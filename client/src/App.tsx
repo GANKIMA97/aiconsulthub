@@ -2,7 +2,7 @@ import { Switch, Route } from "wouter";
 import { useTranslation } from 'react-i18next';
 import { Home } from "@/pages/Home";
 import { Blog } from "@/pages/Blog";
-import { Dashboard } from "@/pages/Dashboard";
+import { AdminDashboard } from "@/pages/AdminDashboard";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
@@ -77,7 +77,7 @@ function App() {
           <Switch>
             <Route path="/" component={Home} />
             <Route path="/blog" component={Blog} />
-            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/admin" component={AdminDashboard} />
           </Switch>
         </div>
         <ChatWidget />

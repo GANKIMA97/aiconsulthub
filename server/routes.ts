@@ -13,7 +13,19 @@ interface ChatMessage {
 }
 
 export function registerRoutes(app: Express): Server {
-  // API routes will be added here
+  // Admin verification endpoint
+  const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'default-secure-token-replace-in-production';
+  
+  app.get('/api/admin/verify', (req, res) => {
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token || token !== ADMIN_TOKEN) {
+      return res.status(401).json({ message: 'Invalid admin token' });
+    }
+
+    res.json({ message: 'Admin verified' });
+  });
 
   const httpServer = createServer(app);
 
