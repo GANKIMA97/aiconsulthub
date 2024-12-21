@@ -8,21 +8,27 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import useEmblaCarousel from 'embla-carousel-react';
 import AutoPlay from 'embla-carousel-autoplay';
 
-const autoplay = AutoPlay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true });
+const autoplayPlugin = AutoPlay({
+  delay: 5000,
+  stopOnInteraction: false,
+  stopOnMouseEnter: true,
+  rootNode: (emblaRoot) => emblaRoot.parentElement,
+}) as any; // Type assertion needed due to version mismatch
 
 const testimonials = [
   {
     id: 1,
     imageUrl: "97b1bee74063fb3e8db1f43b3629f28.jpg",
-    alt: "Client testimonial about ChatGPT access in China"
+    alt: "Client testimonial about ChatGPT access in China",
+    content: "The AI access service has been invaluable for our business operations in China. Highly recommended!"
   },
   {
     id: 2,
     imageUrl: "f59d129b53b4f4fe2b940bf525c6fdb.jpg",
-    alt: "Client testimonial about excellent service experience"
+    alt: "Client testimonial about excellent service experience",
+    content: "Outstanding support and seamless integration. The team went above and beyond our expectations!"
   }
 ];
 
@@ -38,7 +44,12 @@ export function Testimonials() {
     };
 
     api.on("select", onSelect);
-    return () => api.off("select", onSelect);
+    api.on("reInit", onSelect);
+
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
   }, [api]);
 
   return (
@@ -62,27 +73,36 @@ export function Testimonials() {
           <Carousel
             setApi={setApi}
             opts={{
-              align: "start",
+              align: "center",
               loop: true,
             }}
-            plugins={[autoplay]}
+            plugins={[autoplayPlugin]}
             className="w-full"
           >
             <CarouselContent>
-              {testimonials.map((testimonial, index) => (
+              {testimonials.map((testimonial) => (
                 <CarouselItem key={testimonial.id}>
-                  <div className="p-1">
+                  <motion.div 
+                    className="p-6 space-y-4"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <img
                       src={testimonial.imageUrl}
                       alt={testimonial.alt}
-                      className="w-full h-[300px] object-contain rounded-xl shadow-xl"
+                      className="w-full h-[300px] object-contain rounded-xl shadow-xl mb-4"
                     />
-                  </div>
+                    <p className="text-lg text-center text-gray-700 dark:text-gray-300 italic">
+                      "{testimonial.content}"
+                    </p>
+                  </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
           </Carousel>
 
           {/* Navigation dots */}
