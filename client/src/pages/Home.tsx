@@ -6,6 +6,7 @@ import { ThreeScene } from '@/components/ThreeScene';
 import { ParticleBackground } from '@/components/ParticleBackground';
 import { ImageCarousel } from '@/components/ImageCarousel';
 import { Testimonials } from '@/components/Testimonials';
+import { TypewriterEffect } from '@/components/TypewriterEffect';
 
 export function Home() {
   const { t } = useTranslation();
@@ -149,6 +150,9 @@ export function Home() {
           </motion.p>
         </div>
       </section>
+
+      {/* Typewriter Effect */}
+      <TypewriterEffect />
 
       {/* Services Section */}
       <section id="services" className="relative min-h-screen flex items-center justify-center py-20 px-4">
