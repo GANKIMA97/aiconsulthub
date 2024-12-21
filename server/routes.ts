@@ -61,6 +61,35 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  app.put('/api/admin/plans/:id', verifyAdminToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const result = insertSubscriptionPlanSchema.safeParse(req.body);
+      
+      if (!result.success) {
+        return res.status(400).json({ 
+          message: 'Invalid input', 
+          errors: result.error.issues 
+        });
+      }
+
+      const [plan] = await db.select().from(subscriptionPlans).where(eq(subscriptionPlans.id, id)).limit(1);
+      
+      if (!plan) {
+        return res.status(404).json({ message: 'Plan not found' });
+      }
+
+      const [updatedPlan] = await db.update(subscriptionPlans)
+        .set(result.data)
+        .where(eq(subscriptionPlans.id, id))
+        .returning();
+
+      res.json(updatedPlan);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to update subscription plan' });
+    }
+  });
+
   app.post('/api/admin/plans/:id/toggle-status', verifyAdminToken, async (req, res) => {
     try {
       const id = parseInt(req.params.id);

@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, Plus, Save } from 'lucide-react';
+import { SubscriptionPlanDialog } from '@/components/SubscriptionPlanDialog';
 
 interface Plan {
   id: number;
@@ -329,6 +330,7 @@ export function AdminDashboard() {
             </Card>
           </TabsContent>
         </Tabs>
+        <SubscriptionPlanDialog open={showNewPlanDialog} onClose={() => setShowNewPlanDialog(false)}/>
       </div>
     </div>
   );
