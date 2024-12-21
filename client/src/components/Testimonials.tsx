@@ -28,7 +28,7 @@ const testimonials = [
     id: 2,
     imageUrl: "f59d129b53b4f4fe2b940bf525c6fdb.jpg",
     alt: "Client testimonial about positive completion of work",
-    content: "The AI access service has been invaluable for our business operations in China. Highly recommended!"
+    content: "Positive Completion of Work"
   }
 ];
 
