@@ -3,6 +3,8 @@ import { createServer, type Server } from "http";
 import { WebSocketServer } from "ws";
 import { WebSocket } from "ws";
 import { db } from "@db";
+import { subscriptionPlans, insertSubscriptionPlanSchema } from "@db/schema";
+import { eq } from "drizzle-orm";
 
 interface ChatMessage {
   type: 'message' | 'system';

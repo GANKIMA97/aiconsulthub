@@ -330,7 +330,13 @@ export function AdminDashboard() {
             </Card>
           </TabsContent>
         </Tabs>
-        <SubscriptionPlanDialog open={showNewPlanDialog} onClose={() => setShowNewPlanDialog(false)}/>
+        <SubscriptionPlanDialog 
+          isOpen={showNewPlanDialog} 
+          onClose={() => setShowNewPlanDialog(false)}
+          adminToken={adminToken || ''}
+          onSuccess={fetchPlans}
+          plan={selectedPlan || undefined}
+        />
       </div>
     </div>
   );
