@@ -5,6 +5,7 @@ import { ServiceCard } from '@/components/ServiceCard';
 import { ThreeScene } from '@/components/ThreeScene';
 import { ParticleBackground } from '@/components/ParticleBackground';
 import { ImageCarousel } from '@/components/ImageCarousel';
+import { Testimonials } from '@/components/Testimonials';
 
 export function Home() {
   const { t } = useTranslation();
@@ -177,6 +178,9 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <Testimonials />
 
       {/* Featured Image Carousel */}
       <section className="relative py-20 px-4">
