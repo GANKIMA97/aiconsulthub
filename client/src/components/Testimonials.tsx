@@ -95,14 +95,15 @@ export function Testimonials() {
                       className="w-full h-[300px] object-contain rounded-xl shadow-xl mb-4"
                     />
                     <div className="space-y-2">
-                      <p className="text-lg text-center text-gray-700 dark:text-gray-300 italic">
-                        "{testimonial.content}"
+                      <p className="relative text-lg text-center text-gray-700 dark:text-gray-300 italic px-8">
+                        <span className="absolute left-0 top-0 text-4xl text-primary/40 font-serif -translate-x-2 -translate-y-3">
+                          "
+                        </span>
+                        {testimonial.content}
+                        <span className="absolute right-0 bottom-0 text-4xl text-primary/40 font-serif translate-x-2 translate-y-3">
+                          "
+                        </span>
                       </p>
-                      {testimonial.caption && (
-                        <p className="text-sm text-center text-gray-600 dark:text-gray-400">
-                          {testimonial.caption}
-                        </p>
-                      )}
                     </div>
                   </motion.div>
                 </CarouselItem>
