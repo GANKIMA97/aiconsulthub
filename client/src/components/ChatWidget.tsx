@@ -22,20 +22,18 @@ export function ChatWidget() {
   const [inputValue, setInputValue] = useState('');
   const [ws, setWs] = useState<WebSocket | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const welcomeMessageAddedRef = useRef(false);
   const { toast } = useToast();
 
-  // Add welcome message only once when the component mounts
+  // Add welcome message when chat is opened
   useEffect(() => {
-    if (!welcomeMessageAddedRef.current) {
+    if (isOpen && messages.length === 0) {
       setMessages([{
         type: 'system',
         content: 'Welcome to AIConsult Hub! How can we help you today?',
         timestamp: Date.now()
       }]);
-      welcomeMessageAddedRef.current = true;
     }
-  }, []);
+  }, [isOpen]);
 
   useEffect(() => {
     let socket: WebSocket | null = null;
