@@ -23,7 +23,7 @@ export function Testimonials() {
   const x = useTransform(scrollXProgress, [0, 1], ["0%", "-50%"]);
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-background to-background/50 overflow-hidden">
+    <section className="py-20 px-4 bg-white dark:bg-gray-900 overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -31,10 +31,10 @@ export function Testimonials() {
           viewport={{ once: true }}
           className="text-center space-y-4"
         >
-          <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-500">
+          <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-cyan-500 to-blue-600">
             Client Testimonials
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-lg text-gray-600 dark:text-gray-300">
             What our clients say about our services
           </p>
         </motion.div>
@@ -44,7 +44,7 @@ export function Testimonials() {
           className="overflow-x-scroll scrollbar-hide cursor-grab"
         >
           <motion.div 
-            className="flex gap-8 px-4"
+            className="flex gap-8 px-4 pb-4"
             style={{ x }}
             drag="x"
             dragConstraints={containerRef}
@@ -59,7 +59,7 @@ export function Testimonials() {
                 <img
                   src={testimonial.imageUrl}
                   alt={testimonial.alt}
-                  className="w-[500px] h-auto rounded-lg shadow-lg"
+                  className="w-[600px] h-auto rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300"
                   draggable="false"
                 />
               </motion.div>
