@@ -1,5 +1,4 @@
 import { Switch, Route } from "wouter";
-import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { Home } from "@/pages/Home";
 import { Blog } from "@/pages/Blog";
@@ -7,7 +6,6 @@ import { Dashboard } from "@/pages/Dashboard";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
-import { LoginDialog } from "@/components/LoginDialog";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -15,19 +13,11 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { useQuery } from "@tanstack/react-query";
 import { ChatWidget } from "@/components/ChatWidget";
 
 function App() {
   const { t } = useTranslation();
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-
-  const { data: user } = useQuery({
-    queryKey: ['/api/user'],
-    retry: false,
-  });
 
   return (
     <>
@@ -78,17 +68,6 @@ function App() {
             <div id="language-switcher">
               <LanguageSwitcher />
             </div>
-            <Button 
-              id="login-button" 
-              variant="outline"
-              onClick={() => setIsLoginOpen(true)}
-            >
-              {user ? user.username : t('nav.login')}
-            </Button>
-            <LoginDialog
-              isOpen={isLoginOpen}
-              onClose={() => setIsLoginOpen(false)}
-            />
           </div>
         </nav>
       </header>

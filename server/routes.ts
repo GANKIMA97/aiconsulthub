@@ -2,7 +2,6 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { WebSocketServer } from "ws";
 import { WebSocket } from "ws";
-import { setupAuth } from "./auth";
 import { db } from "@db";
 
 interface ChatMessage {
@@ -14,8 +13,7 @@ interface ChatMessage {
 }
 
 export function registerRoutes(app: Express): Server {
-  // Setup authentication including session handling
-  setupAuth(app);
+  // API routes will be added here
 
   const httpServer = createServer(app);
 
