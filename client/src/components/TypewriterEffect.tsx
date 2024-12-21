@@ -41,15 +41,23 @@ export function TypewriterEffect() {
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 100 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
           className="text-center relative"
         >
           <h2 className="text-3xl md:text-4xl font-bold inline-flex items-center">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-cyan-500 to-blue-600">
-              {currentText}
-            </span>
+            <motion.span
+              initial={{ width: 0 }}
+              animate={{ width: "auto" }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="overflow-hidden whitespace-nowrap"
+            >
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-cyan-500 to-blue-600">
+                {currentText}
+              </span>
+            </motion.span>
             <motion.span
               animate={{ opacity: [1, 0] }}
               transition={{ duration: 0.3, repeat: Infinity, repeatType: "reverse" }}
