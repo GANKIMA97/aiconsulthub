@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const testimonials = [
   {
@@ -15,12 +15,15 @@ const testimonials = [
 ];
 
 export function Testimonials() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollXProgress } = useScroll({
-    container: containerRef
-  });
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const x = useTransform(scrollXProgress, [0, 1], ["0%", "-50%"]);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section className="py-20 px-4 bg-white dark:bg-gray-900 overflow-hidden">
@@ -39,33 +42,37 @@ export function Testimonials() {
           </p>
         </motion.div>
 
-        <div 
-          ref={containerRef}
-          className="relative overflow-x-hidden w-full max-w-6xl mx-auto"
-        >
-          <motion.div 
-            className="flex space-x-8 px-4 pb-4"
-            style={{ x }}
-            drag="x"
-            dragConstraints={containerRef}
-            dragElastic={0.1}
-          >
-            {testimonials.map((testimonial) => (
-              <motion.div
-                key={testimonial.id}
-                className="flex-shrink-0 w-[500px]"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <img
-                  src={testimonial.imageUrl}
-                  alt={testimonial.alt}
-                  className="w-full h-auto rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300"
-                  draggable="false"
-                />
-              </motion.div>
+        <div className="relative w-full max-w-3xl mx-auto h-[300px] overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 500 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -500 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <img
+                src={testimonials[currentIndex].imageUrl}
+                alt={testimonials[currentIndex].alt}
+                className="w-full h-full object-contain rounded-xl shadow-xl"
+              />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Navigation dots */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentIndex ? "bg-primary" : "bg-primary/30"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
