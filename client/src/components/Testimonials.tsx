@@ -1,5 +1,14 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 
 const testimonials = [
   {
@@ -15,15 +24,16 @@ const testimonials = [
 ];
 
 export function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [api, setApi] = useState<any>();
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 5000); // Change slide every 5 seconds
+    if (!api) return;
 
-    return () => clearInterval(timer);
-  }, []);
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
 
   return (
     <section className="py-20 px-4 bg-white dark:bg-gray-900 overflow-hidden">
@@ -42,32 +52,47 @@ export function Testimonials() {
           </p>
         </motion.div>
 
-        <div className="relative w-full max-w-3xl mx-auto h-[300px] overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, x: 500 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -500 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="absolute inset-0"
-            >
-              <img
-                src={testimonials[currentIndex].imageUrl}
-                alt={testimonials[currentIndex].alt}
-                className="w-full h-full object-contain rounded-xl shadow-xl"
-              />
-            </motion.div>
-          </AnimatePresence>
+        <div className="relative w-full max-w-3xl mx-auto">
+          <Carousel
+            setApi={setApi}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 5000,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
+              }),
+            ]}
+            className="w-full"
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={testimonial.id}>
+                  <div className="p-1">
+                    <img
+                      src={testimonial.imageUrl}
+                      alt={testimonial.alt}
+                      className="w-full h-[300px] object-contain rounded-xl shadow-xl"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
 
           {/* Navigation dots */}
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => api?.scrollTo(index)}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentIndex ? "bg-primary" : "bg-primary/30"
+                  index === current ? "bg-primary" : "bg-primary/30"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
