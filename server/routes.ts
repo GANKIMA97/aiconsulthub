@@ -187,6 +187,14 @@ export function registerRoutes(app: Express): Server {
               }
             }
           });
+
+          // Send email notification for new messages
+          if (message.type === 'message') {
+            import('./services/notifications.js').then(({ sendChatNotification }) => {
+              sendChatNotification(message.content, message.sender)
+                .catch(err => console.error('Failed to send chat notification:', err));
+            });
+          }
         } catch (error) {
           console.error('Error processing message:', error);
         }
