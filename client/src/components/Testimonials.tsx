@@ -41,25 +41,26 @@ export function Testimonials() {
 
         <div 
           ref={containerRef}
-          className="overflow-x-scroll scrollbar-hide cursor-grab"
+          className="relative w-full overflow-hidden"
         >
           <motion.div 
-            className="flex gap-8 px-4 pb-4"
+            className="flex gap-8 px-4 pb-4 min-w-full"
             style={{ x }}
             drag="x"
             dragConstraints={containerRef}
+            dragElastic={0.1}
           >
             {testimonials.map((testimonial) => (
               <motion.div
                 key={testimonial.id}
-                className="flex-shrink-0"
+                className="flex-shrink-0 w-full md:w-[600px]"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <img
                   src={testimonial.imageUrl}
                   alt={testimonial.alt}
-                  className="w-[600px] h-auto rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300"
+                  className="w-full h-auto rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300"
                   draggable="false"
                 />
               </motion.div>
