@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
+  type CarouselApi,
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -8,7 +9,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
+import AutoPlay from 'embla-carousel-autoplay';
+
+const autoplay = AutoPlay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true });
 
 const testimonials = [
   {
@@ -24,15 +27,18 @@ const testimonials = [
 ];
 
 export function Testimonials() {
-  const [api, setApi] = useState<any>();
+  const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     if (!api) return;
 
-    api.on("select", () => {
+    const onSelect = () => {
       setCurrent(api.selectedScrollSnap());
-    });
+    };
+
+    api.on("select", onSelect);
+    return () => api.off("select", onSelect);
   }, [api]);
 
   return (
@@ -59,13 +65,7 @@ export function Testimonials() {
               align: "start",
               loop: true,
             }}
-            plugins={[
-              Autoplay({
-                delay: 5000,
-                stopOnInteraction: false,
-                stopOnMouseEnter: true,
-              }),
-            ]}
+            plugins={[autoplay]}
             className="w-full"
           >
             <CarouselContent>
