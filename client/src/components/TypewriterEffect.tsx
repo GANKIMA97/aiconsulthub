@@ -44,13 +44,16 @@ export function TypewriterEffect() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="text-center"
+          className="text-center relative"
         >
-          <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-cyan-500 to-blue-600">
-            {currentText}
+          <h2 className="text-3xl md:text-4xl font-bold inline-flex items-center">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-cyan-500 to-blue-600">
+              {currentText}
+            </span>
             <motion.span
               animate={{ opacity: [1, 0] }}
               transition={{ duration: 0.3, repeat: Infinity, repeatType: "reverse" }}
+              className="text-purple-600 ml-[-2px] text-4xl font-normal"
             >
               |
             </motion.span>
