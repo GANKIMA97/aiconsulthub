@@ -21,18 +21,17 @@ export function TypewriterEffect() {
     if (currentText.length < text.length) {
       const timeout = setTimeout(() => {
         setCurrentText(text.slice(0, currentText.length + 1));
-      }, 100); // Adjust speed of typing
+      }, 100);
       return () => clearTimeout(timeout);
     } else {
-      // Wait before moving to next text
       const timeout = setTimeout(() => {
         setIsTyping(false);
         setTimeout(() => {
           setCurrentText('');
           setCurrentIndex((prev) => (prev + 1) % services.length);
           setIsTyping(true);
-        }, 1000); // Wait before starting next text
-      }, 1000); // How long to show completed text
+        }, 1000);
+      }, 1000);
       return () => clearTimeout(timeout);
     }
   }, [currentText, currentIndex, isTyping]);
@@ -47,16 +46,14 @@ export function TypewriterEffect() {
           exit={{ opacity: 0, y: -20 }}
           className="text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-cyan-500 to-blue-600">
-              {currentText}
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.3, repeat: Infinity, repeatType: "reverse" }}
-              >
-                |
-              </motion.span>
-            </span>
+          <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-cyan-500 to-blue-600">
+            {currentText}
+            <motion.span
+              animate={{ opacity: [1, 0] }}
+              transition={{ duration: 0.3, repeat: Infinity, repeatType: "reverse" }}
+            >
+              |
+            </motion.span>
           </h2>
         </motion.div>
       </AnimatePresence>
