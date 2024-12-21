@@ -41,10 +41,10 @@ export function Testimonials() {
 
         <div 
           ref={containerRef}
-          className="relative w-full overflow-hidden"
+          className="relative overflow-x-hidden w-full max-w-6xl mx-auto"
         >
           <motion.div 
-            className="flex gap-8 px-4 pb-4 min-w-full"
+            className="flex space-x-8 px-4 pb-4"
             style={{ x }}
             drag="x"
             dragConstraints={containerRef}
@@ -53,7 +53,7 @@ export function Testimonials() {
             {testimonials.map((testimonial) => (
               <motion.div
                 key={testimonial.id}
-                className="flex-shrink-0 w-full md:w-[600px]"
+                className="flex-shrink-0 w-[500px]"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
