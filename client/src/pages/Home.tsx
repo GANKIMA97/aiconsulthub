@@ -87,7 +87,7 @@ export function Home() {
         features: [
           'Strategic Business Consulting',
           'Advanced Data Analysis Services',
-          'Career Development Planning',
+          'Career Development Coaching',
           'Professional Skills Training',
           'Leadership Development Programs'
         ],
