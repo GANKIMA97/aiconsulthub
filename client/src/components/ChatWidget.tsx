@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, Send, X, Minimize2, Maximize2 } from 'lucide-react';
+import { MessageSquare, Send, X, Minimize2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -22,7 +22,20 @@ export function ChatWidget() {
   const [inputValue, setInputValue] = useState('');
   const [ws, setWs] = useState<WebSocket | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const welcomeMessageAddedRef = useRef(false);
   const { toast } = useToast();
+
+  // Add welcome message only once when the component mounts
+  useEffect(() => {
+    if (!welcomeMessageAddedRef.current) {
+      setMessages([{
+        type: 'system',
+        content: 'Welcome to AIConsult Hub! How can we help you today?',
+        timestamp: Date.now()
+      }]);
+      welcomeMessageAddedRef.current = true;
+    }
+  }, []);
 
   useEffect(() => {
     let socket: WebSocket | null = null;
@@ -37,30 +50,17 @@ export function ChatWidget() {
         if (socket && (socket.readyState === WebSocket.CONNECTING || socket.readyState === WebSocket.OPEN)) {
           return; // Already connecting or connected
         }
-        
+
         socket = new WebSocket(
           `${wsProtocol}//${window.location.host}/ws/chat`,
-          ['chat'] // Use array for protocols
+          ['chat']
         );
 
         socket.onopen = () => {
           console.log('WebSocket connected');
           const wasDisconnected = reconnectAttempts > 2;
           reconnectAttempts = 0; // Reset attempts on successful connection
-          
-          // Add welcome message only if messages array is empty
-          setMessages(prev => {
-            if (prev.length === 0) {
-              return [{
-                type: 'system',
-                content: 'Welcome to AIConsult Hub! How can we help you today?',
-                timestamp: Date.now()
-              }];
-            }
-            return prev;
-          });
 
-          // Only show toast if we were previously disconnected for a while
           if (wasDisconnected) {
             toast({
               title: "Connected",
@@ -79,7 +79,7 @@ export function ChatWidget() {
                 return prev;
               }
               const newMessages = [...prev, message];
-              
+
               // Scroll to bottom on new message
               if (scrollAreaRef.current) {
                 setTimeout(() => {
@@ -89,7 +89,7 @@ export function ChatWidget() {
                   });
                 }, 100);
               }
-              
+
               return newMessages;
             });
           } catch (error) {
@@ -99,11 +99,8 @@ export function ChatWidget() {
 
         socket.onclose = (event) => {
           console.log('WebSocket closed:', event.code, event.reason);
-          
-          // Only attempt to reconnect if we haven't reached max attempts
+
           if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
-            // Only show disconnection toast after a longer delay
-            // and only if we've already tried reconnecting multiple times
             if (reconnectAttempts > 2) {
               setTimeout(() => {
                 if (socket?.readyState !== WebSocket.OPEN) {
@@ -113,9 +110,9 @@ export function ChatWidget() {
                     duration: 2000,
                   });
                 }
-              }, 5000); // Increased delay to 5 seconds
+              }, 5000);
             }
-            
+
             reconnectTimeout = setTimeout(() => {
               reconnectAttempts++;
               connect();
@@ -131,13 +128,11 @@ export function ChatWidget() {
 
         socket.onerror = (error) => {
           console.error('WebSocket error:', error);
-          // Let onclose handle the reconnection
         };
 
         setWs(socket);
       } catch (error) {
         console.error('Connection error:', error);
-        // Attempt to reconnect on connection error
         if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
           reconnectTimeout = setTimeout(() => {
             reconnectAttempts++;
@@ -168,7 +163,6 @@ export function ChatWidget() {
       id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
     };
 
-    // Add message to local state immediately
     setMessages(prev => [...prev, message]);
     ws.send(JSON.stringify(message));
     setInputValue('');
@@ -198,24 +192,14 @@ export function ChatWidget() {
                 <MessageSquare className="w-5 h-5 text-primary" />
                 <span className="font-medium">Chat Support</span>
               </div>
-              <div className="flex items-center gap-1">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="w-7 h-7"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Minimize2 className="w-4 h-4" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="w-7 h-7"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="w-7 h-7"
+                onClick={() => setIsOpen(false)}
+              >
+                <X className="w-4 h-4" />
+              </Button>
             </div>
 
             {/* Chat Messages */}
@@ -262,32 +246,20 @@ export function ChatWidget() {
             {/* Chat Input */}
             <div className="p-3 border-t border-border">
               <div className="flex gap-2">
-                <motion.div className="flex-1">
-                  <Input
-                    placeholder="Type your message..."
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    onKeyDown={handleKeyPress}
-                    className="w-full transition-all duration-200 focus:shadow-md"
-                  />
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                <Input
+                  placeholder="Type your message..."
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleKeyPress}
+                  className="flex-1"
+                />
+                <Button 
+                  size="icon" 
+                  onClick={sendMessage}
+                  className="shrink-0"
                 >
-                  <Button 
-                    size="icon" 
-                    onClick={sendMessage}
-                    className="transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
-                  >
-                    <motion.div
-                      animate={{ x: inputValue ? [0, 2, 0] : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Send className="w-4 h-4" />
-                    </motion.div>
-                  </Button>
-                </motion.div>
+                  <Send className="w-4 h-4" />
+                </Button>
               </div>
             </div>
           </motion.div>
@@ -300,17 +272,10 @@ export function ChatWidget() {
           >
             <Button
               size="lg"
-              className="rounded-full shadow-lg transform transition-all duration-200 hover:scale-105 hover:shadow-xl active:scale-95"
+              className="rounded-full shadow-lg"
               onClick={() => setIsOpen(true)}
             >
-              <motion.div
-                initial={{ rotate: -10 }}
-                animate={{ rotate: 0 }}
-                whileHover={{ rotate: 10 }}
-                transition={{ duration: 0.2 }}
-              >
-                <MessageSquare className="w-5 h-5 mr-2" />
-              </motion.div>
+              <MessageSquare className="w-5 h-5 mr-2" />
               Chat Support
             </Button>
           </motion.div>
