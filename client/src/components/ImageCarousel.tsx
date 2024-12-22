@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
   {
-    url: "https://images.unsplash.com/photo-1687424909155-2ab96ed71f1d",
-    alt: "AI Solutions & Integration"
+    url: "/32a562f9227106bed2d2e598ac83e9f.jpg",
+    alt: "ChatGPT Advanced AI Interface"
   },
   {
     url: "https://images.unsplash.com/photo-1560179707-f14e90ef3623",
@@ -15,8 +15,12 @@ const images = [
     alt: "Modern Education Technology"
   },
   {
-    url: "https://images.unsplash.com/photo-1488229297570-58520851e868",
-    alt: "Technology Innovation"
+    url: "/e8976f9fd96cc606b1397c86bd0e0fd.jpg",
+    alt: "Claude AI Interface"
+  },
+  {
+    url: "/2f8a51efba00b5611689a9e2b793a81.jpg",
+    alt: "Perplexity Knowledge Platform"
   }
 ];
 
