@@ -28,7 +28,7 @@ export function ImageCarousel() {
   }, []);
 
   return (
-    <div className="relative w-full h-[400px] overflow-hidden rounded-lg">
+    <div className="relative w-full h-[500px] overflow-hidden rounded-lg bg-gray-100">
       <AnimatePresence mode="wait">
         <motion.img
           key={currentIndex}
@@ -38,7 +38,7 @@ export function ImageCarousel() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -1000 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-contain bg-white"
         />
       </AnimatePresence>
       
