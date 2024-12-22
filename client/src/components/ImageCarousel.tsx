@@ -4,20 +4,20 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
   {
-    url: "/attached_assets/image_1734852504510.png",
-    alt: "Claude AI Interface - Advanced language model selection and interaction"
-  },
-  {
-    url: "/attached_assets/image_1734852532429.png",
-    alt: "Perplexity Knowledge Platform - Where knowledge begins"
-  },
-  {
     url: "/attached_assets/image_1734850887216.png",
     alt: "Digital Solutions Hub - Comprehensive suite of digital transformation tools and services"
   },
   {
     url: "/attached_assets/image_1734851131092.png",
     alt: "Global Digital Access - Connecting communities worldwide through innovative digital solutions"
+  },
+  {
+    url: "/attached_assets/image_1734764528461.png",
+    alt: "Business & Career Development - Professional growth and career advancement services"
+  },
+  {
+    url: "/attached_assets/image_1734765188522.png",
+    alt: "Language Academy - Comprehensive language learning and cultural education"
   }
 ];
 
