@@ -3,16 +3,28 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
   {
-    url: "/attached_assets/image_1734854421945.png",
-    alt: "AI Chat Interface - Modern conversational platform"
+    url: "/attached_assets/32a562f9227106bed2d2e598ac83e9f.jpg",
+    alt: "ChatGPT Interface - Advanced AI conversation platform"
   },
   {
-    url: "/attached_assets/image_1734854437219.png",
-    alt: "Interactive Interface - Dynamic content display"
+    url: "/attached_assets/e8976f9fd96cc606b1397c86bd0e0fd.jpg",
+    alt: "Claude AI Interface - Intelligent digital assistant"
   },
   {
-    url: "/attached_assets/image_1734854462593.png",
-    alt: "Chat Platform - Advanced AI communication system"
+    url: "/attached_assets/2f8a51efba00b5611689a9e2b793a81.jpg",
+    alt: "Perplexity AI Interface - Knowledge discovery platform"
+  },
+  {
+    url: "/attached_assets/global-digital-access.svg",
+    alt: "Global Digital Access - Worldwide connectivity and accessibility"
+  },
+  {
+    url: "/attached_assets/digital-solutions.svg",
+    alt: "Digital Solutions - Innovative technological solutions"
+  },
+  {
+    url: "/attached_assets/business-career.svg",
+    alt: "Business & Career Development - Professional growth opportunities"
   }
 ];
 

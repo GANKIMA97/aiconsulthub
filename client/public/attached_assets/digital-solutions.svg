@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <style>
+    .primary { fill: #1a365d; }
+    .secondary { fill: #2563eb; }
+    .accent { fill: #60a5fa; }
+  </style>
+  <rect x="200" y="150" width="400" height="300" rx="20" class="primary"/>
+  <rect x="250" y="200" width="300" height="200" rx="10" class="secondary"/>
+  <circle cx="400" cy="300" r="60" class="accent"/>
+  <path d="M380 280l40 40M420 280l-40 40" stroke="white" stroke-width="10" stroke-linecap="round"/>
+</svg>

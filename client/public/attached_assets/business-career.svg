@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <style>
+    .primary { fill: #1a365d; }
+    .secondary { fill: #2563eb; }
+    .accent { fill: #60a5fa; }
+  </style>
+  <path d="M200 400h400l-200-300z" class="primary"/>
+  <rect x="300" y="250" width="200" height="150" rx="10" class="secondary"/>
+  <path d="M350 300h100M350 350h100" stroke="white" stroke-width="10" stroke-linecap="round"/>
+</svg>
