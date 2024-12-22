@@ -4,11 +4,11 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
   {
-    url: "/assets/e8976f9fd96cc606b1397c86bd0e0fd.jpg",
-    alt: "ChatGPT Advanced AI Interface - GPT-4 and other models selection interface"
+    url: "/assets/image_1734852504510.png",
+    alt: "Claude AI Interface - Advanced language model selection and interaction"
   },
   {
-    url: "/assets/2f8a51efba00b5611689a9e2b793a81.jpg",
+    url: "/assets/image_1734852532429.png",
     alt: "Perplexity Knowledge Platform - Where knowledge begins"
   },
   {
@@ -60,7 +60,7 @@ export function ImageCarousel() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -1000 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute inset-0 w-full h-full object-contain bg-white"
+          className="absolute inset-0 w-full h-full object-contain bg-white p-4"
         />
       </AnimatePresence>
       
