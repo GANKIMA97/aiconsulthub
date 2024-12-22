@@ -4,8 +4,22 @@
     .secondary { fill: #2563eb; }
     .accent { fill: #60a5fa; }
   </style>
-  <circle cx="400" cy="300" r="200" class="primary"/>
-  <path d="M400 100v400M200 300h400" class="secondary" stroke-width="20" fill="none" stroke="currentColor"/>
-  <path d="M250 200q150 100 300 0M250 400q150-100 300 0" class="accent" stroke-width="15" fill="none" stroke="currentColor"/>
-  <circle cx="400" cy="300" r="40" class="accent"/>
+  <!-- World map abstract representation -->
+  <path d="M150 250 Q400 200 650 250 Q400 300 150 250" class="primary" />
+  <path d="M150 350 Q400 300 650 350 Q400 400 150 350" class="primary" />
+  <!-- Connection lines -->
+  <path d="M400 150 L400 450" stroke="#2563eb" stroke-width="4" fill="none">
+    <animate attributeName="stroke-dasharray" from="0,150" to="150,0" dur="2s" repeatCount="indefinite" />
+  </path>
+  <!-- Connection nodes -->
+  <circle cx="400" cy="200" r="8" class="secondary" />
+  <circle cx="400" cy="300" r="8" class="secondary" />
+  <circle cx="400" cy="400" r="8" class="secondary" />
+  <!-- Digital signals -->
+  <g class="accent">
+    <circle cx="250" cy="250" r="5" />
+    <circle cx="550" cy="250" r="5" />
+    <circle cx="250" cy="350" r="5" />
+    <circle cx="550" cy="350" r="5" />
+  </g>
 </svg>

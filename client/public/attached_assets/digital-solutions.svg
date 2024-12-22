@@ -4,8 +4,36 @@
     .secondary { fill: #2563eb; }
     .accent { fill: #60a5fa; }
   </style>
-  <rect x="200" y="150" width="400" height="300" rx="20" class="primary"/>
-  <rect x="250" y="200" width="300" height="200" rx="10" class="secondary"/>
-  <circle cx="400" cy="300" r="60" class="accent"/>
-  <path d="M380 280l40 40M420 280l-40 40" stroke="white" stroke-width="10" stroke-linecap="round"/>
+  <!-- Central hub -->
+  <circle cx="400" cy="300" r="100" class="primary" />
+  <!-- Connected services -->
+  <g transform="translate(400 300)">
+    <!-- AI -->
+    <g transform="rotate(0)">
+      <path d="M0,-180 L30,-150 L-30,-150 Z" class="secondary" />
+      <text x="0" y="-140" text-anchor="middle" fill="#2563eb" font-size="14">AI</text>
+    </g>
+    <!-- Cloud -->
+    <g transform="rotate(72)">
+      <path d="M0,-180 L30,-150 L-30,-150 Z" class="secondary" />
+      <text x="0" y="-140" text-anchor="middle" fill="#2563eb" font-size="14">Cloud</text>
+    </g>
+    <!-- Data -->
+    <g transform="rotate(144)">
+      <path d="M0,-180 L30,-150 L-30,-150 Z" class="secondary" />
+      <text x="0" y="-140" text-anchor="middle" fill="#2563eb" font-size="14">Data</text>
+    </g>
+    <!-- Mobile -->
+    <g transform="rotate(216)">
+      <path d="M0,-180 L30,-150 L-30,-150 Z" class="secondary" />
+      <text x="0" y="-140" text-anchor="middle" fill="#2563eb" font-size="14">Mobile</text>
+    </g>
+    <!-- Security -->
+    <g transform="rotate(288)">
+      <path d="M0,-180 L30,-150 L-30,-150 Z" class="secondary" />
+      <text x="0" y="-140" text-anchor="middle" fill="#2563eb" font-size="14">Security</text>
+    </g>
+  </g>
+  <!-- Connection lines -->
+  <circle cx="400" cy="300" r="60" class="accent" fill="none" stroke="#60a5fa" stroke-width="4" />
 </svg>
