@@ -21,29 +21,25 @@ export function LanguageSwitcher() {
     <div className="relative z-50">
       <Select value={i18n.language} onValueChange={(value) => i18n.changeLanguage(value)}>
         <SelectTrigger 
-          className="min-w-[70px] h-9 px-2.5 bg-transparent border-none focus:ring-0" 
+          className="min-w-[80px] bg-transparent border-0 shadow-none focus:ring-0 hover:bg-transparent" 
           hideIndicator
         >
-          <div className="flex items-center gap-2">
-            <Globe className="h-5 w-5" />
-            <span className="text-sm font-medium">
-              {i18n.language.toUpperCase()}
-            </span>
-          </div>
+          <span className="text-sm text-foreground/70">
+            {languages.find(lang => lang.code === i18n.language)?.name || i18n.language.toUpperCase()}
+          </span>
         </SelectTrigger>
         <SelectContent 
           align="end"
-          alignOffset={-2}
-          className="min-w-[120px] bg-background/95 shadow-md rounded-md border-0"
+          className="min-w-[100px] bg-white/95 shadow-sm rounded border-0"
           position="popper"
           side="bottom"
-          sideOffset={6}
+          sideOffset={4}
         >
           {languages.map((lang) => (
             <SelectItem 
               key={lang.code} 
               value={lang.code}
-              className="py-2 px-3 text-sm cursor-pointer hover:bg-accent/5"
+              className="py-1.5 px-2 text-sm cursor-pointer hover:bg-gray-50"
             >
               {lang.name}
             </SelectItem>
