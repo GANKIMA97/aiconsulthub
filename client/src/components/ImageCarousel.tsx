@@ -4,20 +4,16 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
   {
-    url: "/assets/2f8a51efba00b5611689a9e2b793a81.jpg",
-    alt: "Digital Solutions Hub - Comprehensive suite of digital transformation tools and services"
+    url: "/attached_assets/image_1734852504510.png",
+    alt: "AI Platform Interface - Modern chat interface for intelligent interactions"
   },
   {
-    url: "/assets/e8976f9fd96cc606b1397c86bd0e0fd.jpg",
-    alt: "Global Digital Access - Connecting communities worldwide through innovative digital solutions"
+    url: "/attached_assets/image_1734852532429.png",
+    alt: "Knowledge Platform - Where knowledge begins with comprehensive search capabilities"
   },
   {
-    url: "/assets/f258fbc4e525268a7ff4316381b17aa_1734775814929.png",
-    alt: "Business & Career Development - Professional growth and career advancement services"
-  },
-  {
-    url: "/assets/image_1734764528461.png",
-    alt: "Language Academy - Comprehensive language learning and cultural education"
+    url: "/attached_assets/image_1734853957822.png",
+    alt: "Advanced Search Interface - Intuitive search and discovery platform"
   }
 ];
 
