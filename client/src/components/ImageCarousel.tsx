@@ -40,20 +40,23 @@ export function ImageCarousel() {
   };
 
   return (
-    <div className="w-full bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4">
+    <div className="w-full bg-gray-100 py-12">
+      <div className="max-w-5xl mx-auto px-4">
         <div 
-          className="relative bg-white rounded-lg shadow-lg"
-          style={{ height: '500px' }}
+          className="relative bg-white rounded-xl shadow-xl"
+          style={{ 
+            paddingTop: '56.25%', // 16:9 aspect ratio
+            width: '100%'
+          }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <div className="absolute inset-0 flex items-center justify-center p-4">
+          {/* Image Container */}
+          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center p-8">
             <img
               src={images[currentIndex].url}
               alt={images[currentIndex].alt}
-              className="max-h-full w-auto object-contain"
-              style={{ maxWidth: '100%' }}
+              className="w-full h-full object-contain"
             />
           </div>
 
