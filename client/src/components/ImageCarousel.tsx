@@ -40,30 +40,27 @@ export function ImageCarousel() {
   };
 
   return (
-    <div className="w-full bg-gray-100 py-12">
-      <div className="max-w-5xl mx-auto px-4">
+    <div className="w-full bg-gray-100">
+      <div className="max-w-[800px] mx-auto p-6">
+        {/* Fixed height container */}
         <div 
-          className="relative bg-white rounded-xl shadow-xl"
-          style={{ 
-            paddingTop: '56.25%', // 16:9 aspect ratio
-            width: '100%'
-          }}
+          className="relative h-[480px] bg-white rounded-lg shadow-lg overflow-hidden"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Image Container */}
-          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center p-8">
+          {/* Image wrapper with padding */}
+          <div className="absolute inset-0 p-6 flex items-center justify-center">
             <img
               src={images[currentIndex].url}
               alt={images[currentIndex].alt}
-              className="w-full h-full object-contain"
+              className="max-w-full max-h-full object-contain"
             />
           </div>
 
           {/* Navigation Buttons */}
           <button
             onClick={previousImage}
-            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition-all"
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition-all"
             aria-label="Previous image"
           >
             <ChevronLeft className="h-6 w-6" />
@@ -71,13 +68,13 @@ export function ImageCarousel() {
           
           <button
             onClick={nextImage}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition-all"
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition-all"
             aria-label="Next image"
           >
             <ChevronRight className="h-6 w-6" />
           </button>
 
-          {/* Image Indicators */}
+          {/* Indicators */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
             {images.map((_, idx) => (
               <button
@@ -86,7 +83,7 @@ export function ImageCarousel() {
                   setCurrentIndex(idx);
                   setIsPaused(true);
                 }}
-                className={`w-3 h-3 rounded-full transition-all ${
+                className={`w-2 h-2 rounded-full transition-colors ${
                   idx === currentIndex 
                     ? 'bg-black/70' 
                     : 'bg-black/30 hover:bg-black/50'
