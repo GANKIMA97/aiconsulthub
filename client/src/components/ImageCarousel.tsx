@@ -13,6 +13,22 @@ const images = [
   {
     url: "/images/perplexity-interface.jpg",
     alt: "Perplexity Knowledge Platform - Where knowledge begins"
+  },
+  {
+    url: "/images/global-digital-access.jpg",
+    alt: "Global Digital Access - Connecting communities worldwide through innovative digital solutions"
+  },
+  {
+    url: "/images/digital-solutions.jpg",
+    alt: "Digital Solutions Hub - Comprehensive suite of digital transformation tools and services"
+  },
+  {
+    url: "/images/business-career.jpg",
+    alt: "Business & Career Development Platform - Professional growth and business optimization resources"
+  },
+  {
+    url: "/images/language-academy.jpg",
+    alt: "Language Academy Interface - Advanced language learning and cultural exchange platform"
   }
 ];
 
