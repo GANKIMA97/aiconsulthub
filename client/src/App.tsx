@@ -64,8 +64,8 @@ function App() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <div className="flex items-center gap-4">
-            <div id="language-switcher" className="relative z-50">
+          <div className="flex items-center">
+            <div className="px-2 sm:px-4">
               <LanguageSwitcher />
             </div>
           </div>
