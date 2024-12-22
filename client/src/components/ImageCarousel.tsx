@@ -3,23 +3,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
   {
-    url: "/32a562f9227106bed2d2e598ac83e9f.jpg",
+    url: "/images/32a562f9227106bed2d2e598ac83e9f.jpg",
     alt: "ChatGPT Advanced AI Interface"
   },
   {
-    url: "https://images.unsplash.com/photo-1560179707-f14e90ef3623",
-    alt: "Business Innovation Hub"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1501504905252-473c47e087f8",
-    alt: "Modern Education Technology"
-  },
-  {
-    url: "/e8976f9fd96cc606b1397c86bd0e0fd.jpg",
+    url: "/images/e8976f9fd96cc606b1397c86bd0e0fd.jpg",
     alt: "Claude AI Interface"
   },
   {
-    url: "/2f8a51efba00b5611689a9e2b793a81.jpg",
+    url: "/images/2f8a51efba00b5611689a9e2b793a81.jpg",
     alt: "Perplexity Knowledge Platform"
   }
 ];
