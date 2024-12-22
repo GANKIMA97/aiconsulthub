@@ -4,19 +4,19 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
   {
-    url: "/attached_assets/e8976f9fd96cc606b1397c86bd0e0fd.jpg",
+    url: "/assets/e8976f9fd96cc606b1397c86bd0e0fd.jpg",
     alt: "ChatGPT Advanced AI Interface - GPT-4 and other models selection interface"
   },
   {
-    url: "/attached_assets/2f8a51efba00b5611689a9e2b793a81.jpg",
+    url: "/assets/2f8a51efba00b5611689a9e2b793a81.jpg",
     alt: "Perplexity Knowledge Platform - Where knowledge begins"
   },
   {
-    url: "/attached_assets/image_1734850887216.png",
+    url: "/assets/image_1734850887216.png",
     alt: "Digital Solutions Hub - Comprehensive suite of digital transformation tools and services"
   },
   {
-    url: "/attached_assets/image_1734851131092.png",
+    url: "/assets/image_1734851131092.png",
     alt: "Global Digital Access - Connecting communities worldwide through innovative digital solutions"
   }
 ];
