@@ -3,15 +3,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
   {
-    url: "/32a562f9227106bed2d2e598ac83e9f.jpg",
+    url: "/images/chatgpt-interface.jpg",
     alt: "ChatGPT Advanced AI Interface - GPT-4 and other models selection interface"
   },
   {
-    url: "/e8976f9fd96cc606b1397c86bd0e0fd.jpg",
+    url: "/images/claude-interface.jpg",
     alt: "Claude AI Interface - Selection of Claude models including Sonnet and Opus"
   },
   {
-    url: "/2f8a51efba00b5611689a9e2b793a81.jpg",
+    url: "/images/perplexity-interface.jpg",
     alt: "Perplexity Knowledge Platform - Where knowledge begins"
   }
 ];
