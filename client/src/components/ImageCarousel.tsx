@@ -47,7 +47,7 @@ export function ImageCarousel() {
 
   return (
     <div 
-      className="relative w-full h-[500px] overflow-hidden rounded-lg bg-gray-100"
+      className="relative w-full h-[600px] overflow-hidden rounded-lg bg-background shadow-md"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -56,11 +56,11 @@ export function ImageCarousel() {
           key={currentIndex}
           src={images[currentIndex].url}
           alt={images[currentIndex].alt}
-          initial={{ opacity: 0, x: 1000 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -1000 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute inset-0 w-full h-full object-contain bg-white p-4"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="absolute inset-0 w-full h-full object-cover md:object-contain bg-white p-4"
         />
       </AnimatePresence>
       
