@@ -20,24 +20,27 @@ export function LanguageSwitcher() {
   return (
     <div className="relative z-50">
       <Select value={i18n.language} onValueChange={(value) => i18n.changeLanguage(value)}>
-        <SelectTrigger className="min-w-[100px] sm:w-[120px] h-9 px-2.5 bg-transparent hover:bg-background/10 border-none focus:ring-0 rounded-md text-sm">
-          <div className="flex items-center gap-2">
-            <Globe className="h-4 w-4 shrink-0 text-foreground/70" />
-            <SelectValue className="flex-1" />
+        <SelectTrigger className="min-w-[40px] w-auto px-2 h-8 bg-transparent hover:bg-transparent border-0 shadow-none focus:ring-0 focus:border-0">
+          <div className="flex items-center gap-1.5">
+            <Globe className="h-4 w-4 opacity-70" />
+            <span className="text-sm font-medium opacity-70">
+              {i18n.language.toUpperCase()}
+            </span>
           </div>
         </SelectTrigger>
         <SelectContent 
-          align="end" 
-          className="w-[180px] bg-background/95 backdrop-blur-md shadow-lg border border-border/50"
+          align="end"
+          alignOffset={-4}
+          className="min-w-[100px] rounded-md bg-background/80 backdrop-blur-sm shadow-sm border-0"
           position="popper"
           side="bottom"
-          sideOffset={4}
+          sideOffset={8}
         >
           {languages.map((lang) => (
             <SelectItem 
               key={lang.code} 
               value={lang.code}
-              className="py-2.5 px-3 text-sm cursor-pointer hover:bg-primary/10 focus:bg-primary/10"
+              className="py-1.5 px-2 text-sm cursor-pointer hover:bg-primary/5 focus:bg-primary/5"
             >
               {lang.name}
             </SelectItem>
