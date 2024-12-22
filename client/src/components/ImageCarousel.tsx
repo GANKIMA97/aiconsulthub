@@ -15,16 +15,16 @@ const images = [
     alt: "Perplexity AI Interface - Knowledge discovery platform"
   },
   {
-    url: "/attached_assets/global-digital-access.svg",
-    alt: "Global Digital Access - Worldwide connectivity and accessibility"
+    url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1024",
+    alt: "Global Digital Access - Worldwide digital connectivity visualization with network nodes"
   },
   {
-    url: "/attached_assets/digital-solutions.svg",
-    alt: "Digital Solutions - Innovative technological solutions"
+    url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1024",
+    alt: "Digital Solutions - Modern technology workspace with advanced solutions"
   },
   {
-    url: "/attached_assets/business-career.svg",
-    alt: "Business & Career Development - Professional growth opportunities"
+    url: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1024",
+    alt: "Business & Career Development - Professional growth and career advancement"
   }
 ];
 
