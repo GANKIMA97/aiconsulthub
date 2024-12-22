@@ -3,16 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
   {
-    url: "/images/32a562f9227106bed2d2e598ac83e9f.jpg",
-    alt: "ChatGPT Advanced AI Interface"
+    url: "/32a562f9227106bed2d2e598ac83e9f.jpg",
+    alt: "ChatGPT Advanced AI Interface - GPT-4 and other models selection interface"
   },
   {
-    url: "/images/e8976f9fd96cc606b1397c86bd0e0fd.jpg",
-    alt: "Claude AI Interface"
+    url: "/e8976f9fd96cc606b1397c86bd0e0fd.jpg",
+    alt: "Claude AI Interface - Selection of Claude models including Sonnet and Opus"
   },
   {
-    url: "/images/2f8a51efba00b5611689a9e2b793a81.jpg",
-    alt: "Perplexity Knowledge Platform"
+    url: "/2f8a51efba00b5611689a9e2b793a81.jpg",
+    alt: "Perplexity Knowledge Platform - Where knowledge begins"
   }
 ];
 
