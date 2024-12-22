@@ -4,6 +4,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
   {
+    url: "/attached_assets/image_1734851131092.png",
+    alt: "ChatGPT Interface - Interactive AI chat platform"
+  },
+  {
     url: "/attached_assets/image_1734852504510.png",
     alt: "AI Platform Interface - Modern chat interface for intelligent interactions"
   },
