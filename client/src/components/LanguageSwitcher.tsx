@@ -7,6 +7,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Globe } from 'lucide-react';
+import { cn } from "@/lib/utils";
 
 export function LanguageSwitcher() {
   const { i18n } = useTranslation();
@@ -36,12 +37,18 @@ export function LanguageSwitcher() {
           side="bottom"
           sideOffset={4}
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col space-y-1">
             {languages.map((lang) => (
               <SelectItem 
                 key={lang.code} 
                 value={lang.code}
-                className="py-2 px-3 text-sm cursor-pointer rounded-md hover:bg-gray-50 transition-colors"
+                className={cn(
+                  "py-2 px-3 text-sm cursor-pointer rounded-md transition-colors data-[highlighted]:bg-gray-50",
+                  "flex items-center justify-start",
+                  "focus:bg-gray-50 focus:text-gray-900",
+                  "radix-disabled:opacity-50",
+                  "select-none outline-none"
+                )}
               >
                 {lang.name}
               </SelectItem>
