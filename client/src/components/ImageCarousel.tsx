@@ -47,21 +47,25 @@ export function ImageCarousel() {
 
   return (
     <div 
-      className="relative w-full h-[600px] overflow-hidden rounded-lg bg-background shadow-md"
+      className="relative w-full max-w-6xl mx-auto h-[calc(100vh-200px)] overflow-hidden rounded-lg bg-white shadow-xl"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <AnimatePresence mode="wait">
-        <motion.img
+        <motion.div
           key={currentIndex}
-          src={images[currentIndex].url}
-          alt={images[currentIndex].alt}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="absolute inset-0 w-full h-full object-cover md:object-contain bg-white p-4"
-        />
+          className="absolute inset-0 flex items-center justify-center p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <img
+            src={images[currentIndex].url}
+            alt={images[currentIndex].alt}
+            className="max-w-full max-h-full object-contain"
+          />
+        </motion.div>
       </AnimatePresence>
       
       {/* Navigation buttons */}
