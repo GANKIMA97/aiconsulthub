@@ -46,58 +46,60 @@ export function ImageCarousel() {
   };
 
   return (
-    <div 
-      className="relative w-full max-w-6xl mx-auto h-[calc(100vh-200px)] overflow-hidden rounded-lg bg-white shadow-xl"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentIndex}
-          className="absolute inset-0 flex items-center justify-center p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
+    <div className="w-full max-w-[1200px] mx-auto my-8 px-4">
+      <div 
+        className="relative aspect-[16/9] w-full rounded-xl bg-white shadow-lg overflow-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <img
+              src={images[currentIndex].url}
+              alt={images[currentIndex].alt}
+              className="w-full h-full object-contain"
+            />
+          </motion.div>
+        </AnimatePresence>
+        
+        {/* Navigation buttons */}
+        <button
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-colors"
+          onClick={previousImage}
         >
-          <img
-            src={images[currentIndex].url}
-            alt={images[currentIndex].alt}
-            className="max-w-full max-h-full object-contain"
-          />
-        </motion.div>
-      </AnimatePresence>
-      
-      {/* Navigation buttons */}
-      <button
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-colors"
-        onClick={previousImage}
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </button>
-      <button
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-colors"
-        onClick={nextImage}
-      >
-        <ChevronRight className="w-6 h-6" />
-      </button>
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-colors"
+          onClick={nextImage}
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
 
-      {/* Dots indicator */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            className={`w-2 h-2 rounded-full transition-colors ${
-              index === currentIndex 
-                ? "bg-white" 
-                : "bg-white/50"
-            }`}
-            onClick={() => {
-              setCurrentIndex(index);
-              setIsPaused(true);
-            }}
-          />
-        ))}
+        {/* Dots indicator */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              className={`w-2 h-2 rounded-full transition-colors ${
+                index === currentIndex 
+                  ? "bg-white" 
+                  : "bg-white/50"
+              }`}
+              onClick={() => {
+                setCurrentIndex(index);
+                setIsPaused(true);
+              }}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
