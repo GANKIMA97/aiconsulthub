@@ -39,19 +39,26 @@ export function LanguageSwitcher() {
         >
           <div className="flex flex-col space-y-1">
             {languages.map((lang) => (
-              <SelectItem 
-                key={lang.code} 
-                value={lang.code}
-                className={cn(
-                  "py-2 px-3 text-sm cursor-pointer rounded-md transition-colors data-[highlighted]:bg-gray-50",
-                  "flex items-center justify-start",
-                  "focus:bg-gray-50 focus:text-gray-900",
-                  "radix-disabled:opacity-50",
-                  "select-none outline-none"
-                )}
+              <div
+                key={lang.code}
+                className="relative"
               >
-                {lang.name}
-              </SelectItem>
+                <SelectItem 
+                  value={lang.code}
+                  className={cn(
+                    "py-2 px-3 text-sm cursor-pointer rounded-md transition-colors",
+                    "data-[highlighted]:bg-gray-50 data-[state=checked]:bg-gray-50",
+                    "flex items-center justify-start",
+                    "focus:bg-gray-50 focus:text-gray-900",
+                    "select-none outline-none",
+                    "[&>span]:!p-0 [&>span]:!m-0 [&>span]:!leading-none",
+                    "[&>span]:!flex [&>span]:!items-center",
+                    "[&_svg]:hidden" // Hide the checkmark icon
+                  )}
+                >
+                  {lang.name}
+                </SelectItem>
+              </div>
             ))}
           </div>
         </SelectContent>
