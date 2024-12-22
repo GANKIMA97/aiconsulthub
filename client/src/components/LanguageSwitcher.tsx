@@ -20,10 +20,10 @@ export function LanguageSwitcher() {
   return (
     <div className="relative z-50">
       <Select value={i18n.language} onValueChange={(value) => i18n.changeLanguage(value)}>
-        <SelectTrigger className="min-w-[120px] sm:w-[140px] h-10 px-3 py-2 bg-background/80 hover:bg-background/90 backdrop-blur-md border border-border/50 rounded-md text-sm focus:ring-2 focus:ring-primary">
-          <div className="flex items-center gap-2 justify-between">
-            <Globe className="h-4 w-4 shrink-0" />
-            <SelectValue className="flex-1 text-left" />
+        <SelectTrigger className="min-w-[100px] sm:w-[120px] h-9 px-2.5 bg-transparent hover:bg-background/10 border-none focus:ring-0 rounded-md text-sm">
+          <div className="flex items-center gap-2">
+            <Globe className="h-4 w-4 shrink-0 text-foreground/70" />
+            <SelectValue className="flex-1" />
           </div>
         </SelectTrigger>
         <SelectContent 
