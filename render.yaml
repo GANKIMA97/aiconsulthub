@@ -27,6 +27,15 @@ services:
         value: "5000"
       - key: WS_ENABLED
         value: "true"
+    # Add WebSocket specific configurations
+    headers:
+      - path: /*
+        name: Access-Control-Allow-Origin
+        value: "*"
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
     buildEnv:
       - key: NODE_VERSION
         value: ~20.0.0

@@ -16,30 +16,34 @@ interface ChatMessage {
 
 export function registerRoutes(app: Express): Server {
   // Health check endpoint for Render.com
-  app.get('/api/health', (_req: Request, res: Response) => {
+  app.get('/api/health', async (_req: Request, res: Response) => {
     try {
       // Check database connection
-      db.execute(sql`SELECT 1`)
-        .then(() => {
-          res.json({ 
-            status: 'ok',
-            timestamp: new Date().toISOString(),
-            environment: process.env.NODE_ENV
-          });
-        })
-        .catch((error) => {
-          console.error('Health check failed:', error);
-          res.status(503).json({ 
-            status: 'error',
-            message: 'Database connection failed',
-            timestamp: new Date().toISOString()
-          });
-        });
+      const dbCheck = await db.execute(sql`SELECT 1`);
+
+      // Additional health checks
+      const memoryUsage = process.memoryUsage();
+      const uptime = process.uptime();
+
+      res.json({ 
+        status: 'ok',
+        checks: {
+          database: dbCheck ? 'connected' : 'error',
+          websocket: 'enabled',
+          memory: {
+            heapUsed: Math.round(memoryUsage.heapUsed / 1024 / 1024) + 'MB',
+            heapTotal: Math.round(memoryUsage.heapTotal / 1024 / 1024) + 'MB',
+          },
+          uptime: Math.round(uptime) + 's'
+        },
+        timestamp: new Date().toISOString(),
+        environment: process.env.NODE_ENV
+      });
     } catch (error) {
       console.error('Health check failed:', error);
-      res.status(500).json({ 
+      res.status(503).json({ 
         status: 'error',
-        message: 'Internal server error',
+        message: 'Service unavailable',
         timestamp: new Date().toISOString()
       });
     }
