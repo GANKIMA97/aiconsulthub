@@ -7,6 +7,10 @@ services:
     startCommand: npm start
     healthCheckPath: /api/health
     autoDeploy: true
+    plan: starter # Specify the instance size
+    scaling:
+      minInstances: 1
+      maxInstances: 1
     envVars:
       - key: NODE_ENV
         value: production
@@ -26,9 +30,12 @@ services:
         sync: false
       - key: ADMIN_TOKEN
         sync: false
+    buildEnv:
+      - key: NODE_VERSION
+        value: ~20.0.0
 
 databases:
   - name: aiconsulthub-db
     region: singapore
-    plan: standard # Using standard plan for better performance and reliability
+    plan: starter # Using starter plan for development
     ipAllowList: [] # Only allow internal connections

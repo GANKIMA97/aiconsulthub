@@ -1,10 +1,10 @@
-import type { Express } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { WebSocketServer } from "ws";
 import { WebSocket } from "ws";
 import { db } from "@db";
 import { subscriptionPlans, insertSubscriptionPlanSchema } from "@db/schema";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 
 interface ChatMessage {
   type: 'message' | 'system';
@@ -16,14 +16,39 @@ interface ChatMessage {
 
 export function registerRoutes(app: Express): Server {
   // Health check endpoint for Render.com
-  app.get('/api/health', (req, res) => {
-    res.json({ status: 'ok' });
+  app.get('/api/health', (_req: Request, res: Response) => {
+    try {
+      // Check database connection
+      db.execute(sql`SELECT 1`)
+        .then(() => {
+          res.json({ 
+            status: 'ok',
+            timestamp: new Date().toISOString(),
+            environment: process.env.NODE_ENV
+          });
+        })
+        .catch((error) => {
+          console.error('Health check failed:', error);
+          res.status(503).json({ 
+            status: 'error',
+            message: 'Database connection failed',
+            timestamp: new Date().toISOString()
+          });
+        });
+    } catch (error) {
+      console.error('Health check failed:', error);
+      res.status(500).json({ 
+        status: 'error',
+        message: 'Internal server error',
+        timestamp: new Date().toISOString()
+      });
+    }
   });
 
-  // Admin verification endpoint
+  // Admin verification middleware with proper typing
   const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'default-secure-token-replace-in-production';
 
-  const verifyAdminToken = (req: any, res: any, next: any) => {
+  const verifyAdminToken = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.split(' ')[1];
 
