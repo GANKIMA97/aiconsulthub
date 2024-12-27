@@ -45,6 +45,60 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  const httpServer = createServer(app);
+
+  // Initialize WebSocket server with specific configuration
+  const wss = new WebSocketServer({ 
+    server: httpServer,
+    verifyClient: (info) => {
+      // Skip Vite HMR WebSocket connections
+      const protocol = info.req.headers['sec-websocket-protocol'];
+      return protocol !== 'vite-hmr';
+    }
+  });
+
+  // WebSocket connection handling
+  wss.on('connection', (ws: WebSocket) => {
+    console.log('New WebSocket connection established');
+
+    // Send initial connection success message
+    ws.send(JSON.stringify({
+      type: 'system',
+      content: 'Connected to chat server',
+      timestamp: Date.now()
+    }));
+
+    // Handle incoming messages
+    ws.on('message', (data: string) => {
+      try {
+        const message: ChatMessage = JSON.parse(data.toString());
+        // Broadcast message to all connected clients
+        wss.clients.forEach((client) => {
+          if (client !== ws && client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify(message));
+          }
+        });
+      } catch (error) {
+        console.error('Error processing WebSocket message:', error);
+        ws.send(JSON.stringify({
+          type: 'system',
+          content: 'Error processing message',
+          timestamp: Date.now()
+        }));
+      }
+    });
+
+    // Handle WebSocket errors
+    ws.on('error', (error) => {
+      console.error('WebSocket error:', error);
+    });
+
+    // Handle client disconnection
+    ws.on('close', () => {
+      console.log('Client disconnected');
+    });
+  });
+
   // Admin verification middleware with proper typing
   const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'default-secure-token-replace-in-production';
 
@@ -138,6 +192,5 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  const httpServer = createServer(app);
   return httpServer;
 }
