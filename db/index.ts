@@ -8,8 +8,14 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-export const db = drizzle({
+// Configure database connection with SSL for production
+const connectionOptions = {
   connection: process.env.DATABASE_URL,
   schema,
   ws: ws,
-});
+  ssl: process.env.NODE_ENV === 'production' ? {
+    rejectUnauthorized: true,
+  } : undefined,
+};
+
+export const db = drizzle(connectionOptions);

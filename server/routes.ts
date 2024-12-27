@@ -15,9 +15,14 @@ interface ChatMessage {
 }
 
 export function registerRoutes(app: Express): Server {
+  // Health check endpoint for Render.com
+  app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok' });
+  });
+
   // Admin verification endpoint
   const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'default-secure-token-replace-in-production';
-  
+
   const verifyAdminToken = (req: any, res: any, next: any) => {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.split(' ')[1];
@@ -28,10 +33,6 @@ export function registerRoutes(app: Express): Server {
 
     next();
   };
-  
-  app.get('/api/admin/verify', verifyAdminToken, (req, res) => {
-    res.json({ message: 'Admin verified' });
-  });
 
   // Subscription plans management endpoints
   app.get('/api/admin/plans', verifyAdminToken, async (req, res) => {
