@@ -50,7 +50,7 @@ export function registerRoutes(app: Express): Server {
   // Initialize WebSocket server with specific configuration
   const wss = new WebSocketServer({ 
     server: httpServer,
-    verifyClient: (info) => {
+    verifyClient: (info: { req: { headers: { [key: string]: string | undefined } } }) => {
       // Skip Vite HMR WebSocket connections
       const protocol = info.req.headers['sec-websocket-protocol'];
       return protocol !== 'vite-hmr';
@@ -64,7 +64,7 @@ export function registerRoutes(app: Express): Server {
     // Send initial connection success message
     ws.send(JSON.stringify({
       type: 'system',
-      content: 'Connected to chat server',
+      content: 'Welcome to AIConsult Hub! You are now connected to the chat server.',
       timestamp: Date.now()
     }));
 
