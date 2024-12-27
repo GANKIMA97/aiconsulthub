@@ -15,7 +15,12 @@ const connectionOptions = {
   ws: ws,
   ssl: process.env.NODE_ENV === 'production' ? {
     rejectUnauthorized: true,
+    // Render.com PostgreSQL requires SSL
+    sslmode: 'require',
   } : undefined,
 };
 
 export const db = drizzle(connectionOptions);
+
+// Export schema for migrations
+export * from "./schema";

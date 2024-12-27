@@ -6,6 +6,7 @@ services:
     buildCommand: npm install && npm run build
     startCommand: npm start
     healthCheckPath: /api/health
+    autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
@@ -29,4 +30,5 @@ services:
 databases:
   - name: aiconsulthub-db
     region: singapore
-    plan: free
+    plan: standard # Using standard plan for better performance and reliability
+    ipAllowList: [] # Only allow internal connections

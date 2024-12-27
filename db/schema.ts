@@ -1,6 +1,16 @@
 import { pgTable, text, serial, timestamp, boolean, integer, jsonb } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  username: text("username").unique().notNull(),
+  email: text("email").unique().notNull(),
+  password: text("password").notNull(),
+  isAdmin: boolean("is_admin").default(false),
+  isExclusive: boolean("is_exclusive").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const subscriptionPlans = pgTable("subscription_plans", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
@@ -65,6 +75,9 @@ export const analytics = pgTable("analytics", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// Export types
+export type User = typeof users.$inferSelect;
+export type InsertUser = typeof users.$inferInsert;
 export type SubscriptionPlan = typeof subscriptionPlans.$inferSelect;
 export type Payment = typeof payments.$inferSelect;
 export type Subscription = typeof subscriptions.$inferSelect;
@@ -73,6 +86,8 @@ export type Bookmark = typeof bookmarks.$inferSelect;
 export type Analytics = typeof analytics.$inferSelect;
 
 // Schemas for input validation
+export const insertUserSchema = createInsertSchema(users);
+export const selectUserSchema = createSelectSchema(users);
 export const insertSubscriptionPlanSchema = createInsertSchema(subscriptionPlans);
 export const selectSubscriptionPlanSchema = createSelectSchema(subscriptionPlans);
 export const insertPaymentSchema = createInsertSchema(payments);
