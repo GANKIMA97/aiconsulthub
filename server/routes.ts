@@ -54,9 +54,9 @@ export function registerRoutes(app: Express): Server {
   // Initialize WebSocket server with specific configuration
   const wss = new WebSocketServer({ 
     server: httpServer,
-    verifyClient: (info: { req: { headers: { [key: string]: string | undefined } } }) => {
+    verifyClient: ({ req }) => {
       // Skip Vite HMR WebSocket connections
-      const protocol = info.req.headers['sec-websocket-protocol'];
+      const protocol = req.headers['sec-websocket-protocol'];
       return protocol !== 'vite-hmr';
     }
   });
@@ -101,99 +101,6 @@ export function registerRoutes(app: Express): Server {
     ws.on('close', () => {
       console.log('Client disconnected');
     });
-  });
-
-  // Admin verification middleware with proper typing
-  const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'default-secure-token-replace-in-production';
-
-  const verifyAdminToken = (req: Request, res: Response, next: NextFunction) => {
-    const authHeader = req.headers.authorization;
-    const token = authHeader && authHeader.split(' ')[1];
-
-    if (!token || token !== ADMIN_TOKEN) {
-      return res.status(401).json({ message: 'Invalid admin token' });
-    }
-
-    next();
-  };
-
-  // Subscription plans management endpoints
-  app.get('/api/admin/plans', verifyAdminToken, async (req, res) => {
-    try {
-      const plans = await db.select().from(subscriptionPlans);
-      res.json(plans);
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to fetch subscription plans' });
-    }
-  });
-
-  app.post('/api/admin/plans', verifyAdminToken, async (req, res) => {
-    try {
-      const result = insertSubscriptionPlanSchema.safeParse(req.body);
-      if (!result.success) {
-        return res.status(400).json({ 
-          message: 'Invalid input', 
-          errors: result.error.issues 
-        });
-      }
-
-      const [plan] = await db.insert(subscriptionPlans)
-        .values(result.data)
-        .returning();
-
-      res.json(plan);
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to create subscription plan' });
-    }
-  });
-
-  app.put('/api/admin/plans/:id', verifyAdminToken, async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      const result = insertSubscriptionPlanSchema.safeParse(req.body);
-
-      if (!result.success) {
-        return res.status(400).json({ 
-          message: 'Invalid input', 
-          errors: result.error.issues 
-        });
-      }
-
-      const [plan] = await db.select().from(subscriptionPlans).where(eq(subscriptionPlans.id, id)).limit(1);
-
-      if (!plan) {
-        return res.status(404).json({ message: 'Plan not found' });
-      }
-
-      const [updatedPlan] = await db.update(subscriptionPlans)
-        .set(result.data)
-        .where(eq(subscriptionPlans.id, id))
-        .returning();
-
-      res.json(updatedPlan);
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to update subscription plan' });
-    }
-  });
-
-  app.post('/api/admin/plans/:id/toggle-status', verifyAdminToken, async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      const [plan] = await db.select().from(subscriptionPlans).where(eq(subscriptionPlans.id, id)).limit(1);
-
-      if (!plan) {
-        return res.status(404).json({ message: 'Plan not found' });
-      }
-
-      const [updatedPlan] = await db.update(subscriptionPlans)
-        .set({ isActive: !plan.isActive })
-        .where(eq(subscriptionPlans.id, id))
-        .returning();
-
-      res.json(updatedPlan);
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to update plan status' });
-    }
   });
 
   return httpServer;
