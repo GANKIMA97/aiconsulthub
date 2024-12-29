@@ -57,6 +57,10 @@ coverage
 *.tsbuildinfo
 vite.config.ts.*
 
+# Database
+*.sqlite
+*.sqlite3
+
 # Misc
 *.tar.gz
 .DS_Store
